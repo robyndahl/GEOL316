@@ -105,3 +105,11 @@ twoWayEcologyCluster(
 ````
 
 The resulting plot helps you easily determine which sites taxa occur in, and the pattern in occurences should help you see which sites are most similar.
+
+## Part 3: Ediacaran Data Analysis
+We have already explored some Ediacaran data in this course (in the Rarefaction Curve activity in Week 1). The Ediacaran is an important time in the history of life on Earth because marine seafloor ecosystems diversified rapidly, transitioning from a stromatolite (algal mat dominated) seafloor to diverse ecosystems that included all kinds of complex, soft-bodied organisms. We are going to examine data from two famous Ediacaran localities: the Ediacara Hills in South Australia and Mistaken Point in Newfoundland, Canada. At both localities, several bedding planes have been excavated and studied. Each bedding plane is essentially a “snapshot” of the seafloor at a single moment in time, so we can ignore the effects of *time averaging* and treat each bedding plane like a unique assemblage. Here is some information about these two localities:
+
+[Mistaken Point](https://youtu.be/RxJzF3Yk0uc)
+
+[Nilpena, Australia](https://youtu.be/koeeS5H3cNI)
+
