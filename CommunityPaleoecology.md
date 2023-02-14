@@ -18,7 +18,17 @@ To get started, open R Studio and familiarize yourself with the environment. [Th
 After you have explored R Studio a little, open up a scrip pane in the upper left corner of R Studio (click on the icon of a little white page with a green plus sign). This is where you will write (or copy/paste) any code.
 
 ## Step 2: Loading data
-After you get to know the layout of R Studio, you're ready get to started on data analysis! The first step is to download all the packages that we will be using. Packages are open source programs or functions. The packages we will be using for this activity are called `vegan`, `cluster`, and `paleotree`.
+After you get to know the layout of R Studio, you're ready get to started on data analysis! The first step is to download all the packages that we will be using. Packages are open source programs or functions. The packages we will be using for this activity are called `vegan`, `cluster`, and `paleotree`. To download and access the packages, use the following script:
+
+````r
+install.packages("vegan")
+install.packages("cluster")
+install.pagkages("paleotree")
+
+library(vegan)
+library(cluster)
+library(paleotree)
+````
 
 Now let's load in some data! There are different ways of doing this depending on where the data you want to load is located. To simplify things, we will be using datasets that are hosted here in this Github Repository.
 
