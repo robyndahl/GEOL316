@@ -69,3 +69,39 @@ Spend some time examining the distance matrix. Remember, the Bray-Curtix index r
 1. Which two site pairs are the most similar? What is their Bray-Curtis index?
 2. Which two site pairs are the most different? What is their Bray-Curis index?
 3. Which site seems like it is the most different from the others? Explain your reasoning.
+
+Let's visualize this data by conducting a cluster analysis. Use the following script:
+
+````r
+sites.dist.pokemon.agnes <- agnes(sites.dist.pokemon)
+plot(sites.dist.pokemon.agnes)
+````
+The cluster diagram you have generated clusters sites based on how similar they are. Use the diagram to answer the following questions:
+
+4. According to the cluster diagram, which two sites are the most similar? Are they the same sites as your answer for Question 1 (above)?
+5. Which site is the most different from the others? How can you tell? Is it the same site you selected for Question 3 (above)?
+
+The type of analysis you just conducted is called Q-mode cluster analysis. The result of Q-mode cluster analysis tells you which sites are most similar. Sometimes paleontologists and ecologists want to look at the data in a different way, to determine which taxa are most likely to occur together. This is called R-mode cluster analysis. To conduct R-mode cluster analysis, you have to transpose the community matrix by flipping the rows and columns. Use the following script to conduct R-mode cluster analysis on the Pokemon data.
+
+````r
+# transpose your relative abundance community matrix
+pokemon.stand.t <- t(pokemon.stand)
+
+# generate a distance matrix
+taxa.dist.pokemon <- vegdist(pokemon.stand.t, "bray")
+
+# conduct and plot the cluster analysis
+taxa.dist.pokemon.agnes <- agnes(taxa.dist.pokemon)
+plot(taxa.dist.pokemon.agnes)
+````
+
+For the Pokemon data, the resulting plot is quite messy and difficult to interpret. It might be more useful to compare the two types of cluster analysis. We can use the function `twoWayEcologyCluster()` from the `paleotree` package to do this:
+
+````r
+twoWayEcologyCluster(
+  xDist = sites.dist.pokemon.agnes,
+  yDist = taxa.dist.pokemon.agnes,
+  propAbund = pokemon.stand)
+````
+
+The resulting plot helps you easily determine which sites taxa occur in, and the pattern in occurences should help you see which sites are most similar.
