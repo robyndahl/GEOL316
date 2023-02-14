@@ -47,4 +47,9 @@ Now that your data is loaded, you can view it by clicking on the file "pokemon" 
 The data you have just loaded is in the format of a **community matrix**. The rows represent different sites or assemblages and the columns represent individual taxa. Each cell indicates how many of each taxon is present at a particular site. Community matrices are a very common way of representing ecological data, but we need to transform it a little in order to conduct our analysis.
 
 ### Step 3: Pokemon Data Analysis
+The Pokemon community matrix currently represents **raw abundance**. We need to *standardize* the data by converting it to **relative abundance** or percentages. Rather than computing this by hand (tedious! time consuming!) we will use a function (`decodstand`) included in the `vegan` package designed specifically to convert raw abundance in a community matrix to relative abundance. Here is the script to use:
 
+````r
+# standardize by converting community matrix from raw number to relative abundance
+pokemonStand <- decostand(pokemon, method = "total")
+````
