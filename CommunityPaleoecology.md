@@ -17,8 +17,8 @@ To get started, open R Studio and familiarize yourself with the environment. [Th
 
 After you have explored R Studio a little, open up a scrip pane in the upper left corner of R Studio (click on the icon of a little white page with a green plus sign). This is where you will write (or copy/paste) any code.
 
-## Step 2: Loading data
-After you get to know the layout of R Studio, you're ready get to started on data analysis! The first step is to download all the packages that we will be using. Packages are open source programs or functions. The packages we will be using for this activity are called `vegan`, `cluster`, and `paleotree`. To download and access the packages, use the following script:
+### Step 2: Loading data
+After you get to know the layout of R Studio, you're ready get to started on data analysis! The first step is to download all the packages that we will be using. Packages are open source programs or functions. The packages we will be using for this activity are called `vegan`, `cluster`, and `paleotree`. To download and access the packages, use the following script. Copy and paste it into your script pane in the upper left of R Studio, then click "Run"
 
 ````r
 #download the packages
@@ -33,5 +33,15 @@ library(paleotree)
 ````
 NOTE: If you are working on a public computer, you will need to download these packages each time you start a new R session. If you are working on your personal laptop, the packages will stay downloaded from session to session, but you will need top load them each session. In otherwords, you can skip the first three commands (`install.packages()`) but you will still need to run the second three (`library()`).
 
-Now let's load in some data! There are different ways of doing this depending on where the data you want to load is located. To simplify things, we will be using datasets that are hosted here in this Github Repository.
+Now let's load in some data! There are different ways of doing this depending on where the data you want to load is located. To simplify things, we will be using datasets that are hosted here in this Github Repository. Use the following script to load our class Pokemon Go dataset.
+
+````r
+#tell R where the data is hosted
+URL <- 
+
+#load the data
+pokemon <- read.csv(URL, header = T, row.names = 1)
+````
+Now that your data is laoded, you can view it by clicking on the file "pokemon" in the `Environment` pane in the upper right of R Studio. This will open your data in a new pane in the upper left. You can now toggle between the pokemon data and the R script by clicking on their tabs in the upper left pane. You can close and reopen your data as often as you want, but don't close out your script file unless you save it first!
+
 
