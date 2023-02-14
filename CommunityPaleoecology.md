@@ -37,11 +37,14 @@ Now let's load in some data! There are different ways of doing this depending on
 
 ````r
 #tell R where the data is hosted
-URL <- 
+URL <- ("https://raw.githubusercontent.com/robyndahl/GEOL316/master/datasets/pokemon.csv")
 
 #load the data
 pokemon <- read.csv(URL, header = T, row.names = 1)
 ````
-Now that your data is laoded, you can view it by clicking on the file "pokemon" in the `Environment` pane in the upper right of R Studio. This will open your data in a new pane in the upper left. You can now toggle between the pokemon data and the R script by clicking on their tabs in the upper left pane. You can close and reopen your data as often as you want, but don't close out your script file unless you save it first!
+Now that your data is loaded, you can view it by clicking on the file "pokemon" in the `Environment` pane in the upper right of R Studio. This will open your data in a new pane in the upper left. You can now toggle between the pokemon data and the R script by clicking on their tabs in the upper left pane. You can close and reopen your data as often as you want, but don't close out your script file unless you save it first!
 
+The data you have just loaded is in the format of a **community matrix**. The rows represent different sites or assemblages and the columns represent individual taxa. Each cell indicates how many of each taxon is present at a particular site. Community matrices are a very common way of representing ecological data, but we need to transform it a little in order to conduct our analysis.
+
+### Step 3: Pokemon Data Analysis
 
