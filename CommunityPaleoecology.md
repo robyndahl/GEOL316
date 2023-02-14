@@ -64,7 +64,8 @@ sites.dist.pokemon <- vegdist(pokemon.stand, "bray")
 # view the distance matrix
 sites.dist.pokemon
 ````
-It's a little difficult to view the distance matrix like this, so let's convert it from one data type ("double" or a type of vector) to another type ("matrix"):
+Spend some time examining the distance matrix. Remember, the Bray-Curtix index returns values from 0 to 1 and a higher value indicates more **distance** or dissimilarity. A lower value indicates less distance, or more silimarity. Use this information to answer the following questions:
 
-````r
-sites.dist.pokemon <- as.matrix(sites.dist.pokemon)
+1. Which two site pairs are the most similar? What is their Bray-Curtis index?
+2. Which two site pairs are the most different? What is their Bray-Curis index?
+3. Which site seems like it is the most different from the others? Explain your reasoning.
