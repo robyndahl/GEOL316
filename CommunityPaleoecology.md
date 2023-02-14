@@ -51,5 +51,20 @@ The Pokemon community matrix currently represents **raw abundance**. We need to 
 
 ````r
 # standardize by converting community matrix from raw number to relative abundance
-pokemonStand <- decostand(pokemon, method = "total")
+pokemon.stand <- decostand(pokemon, method = "total")
 ````
+Take a look at the relative abundance community matrix by clicking on "pokemonStand" in the Environment pane.
+
+The next step is to calculate the Bary-Curtis distance index numbers for each of the sites. This is what we calculated by hand in Part 1. Now we will use a function in the `vegan` package called `vegdist` to calculate the index for all site combinates at once. So much easier than calculating by hand! Use this script to do the generate the distance index numbers:
+
+````r
+# generate a new matrix for the distance index
+sites.dist.pokemon <- vegdist(pokemon.stand, "bray")
+
+# view the distance matrix
+sites.dist.pokemon
+````
+It's a little difficult to view the distance matrix like this, so let's convert it from one data type ("double" or a type of vector) to another type ("matrix"):
+
+````r
+sites.dist.pokemon <- as.matrix(sites.dist.pokemon)
