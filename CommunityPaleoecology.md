@@ -182,7 +182,7 @@ ediacaran.distance <- as.matrix(sites.dist.ediacaran)
 
 # Q-mode analysis
 sites.dist.ediacaran.agnes <- agnes(sites.dist.ediacaran)
-plot(sites.dist.ediacaran)
+plot(sites.dist.ediacaran.agnes)
 
 ````
 Examine your plot and then answer the following questions:
