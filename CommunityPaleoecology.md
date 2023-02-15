@@ -177,12 +177,13 @@ ediacaran.stand <- decostand(ediacaran, method = "total")
 # generate a distance matrix
 sites.dist.ediacaran <- vegdist(ediacaran.stand, "bray")
 
-#view distance matrix
-sites.dist.ediacaran
+#view distance matrix more easily
+ediacaran.distance <- as.matrix(sites.dist.ediacaran)
 
 # Q-mode analysis
 sites.dist.ediacaran.agnes <- agnes(sites.dist.ediacaran)
 plot(sites.dist.ediacaran)
+
 ````
 Examine your plot and then answer the following questions:
 
