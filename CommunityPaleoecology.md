@@ -17,6 +17,31 @@ Taxonomic richness | A measure of biodiversity equal to the number of taxa prese
 
 ![Image1](/datasets/Image1.png)
 
+Imagine that the two rows of wingdings above represent two fossil assemblages, A and B. Fossil assemblage A has 13 specimens with 9 unique taxa represented. There are 1-2 specimens of each taxon, so the assemblage is fairly even. Fossil assemblage B also has 13 specimens, but there are only 3 taxa present, and the assemblage is not very even because there are 6 of two taxa and only 1 of other. Also note that there at two taxa that are present in both assemblages. In order to compare the diversity of these two assemblages, we can use an **index** that takes the taxonomic richness and assemblage evenness into consideration. Paleontologists often use the following two indices.
+
+**Simpson Coefficient:** emphasizes similarity between the two assemblages and is more sensitive to changes.
+
+![Image2](/datasets/Image2.png)
+
+**Bray-Curtis Dissimilarity** emphasizes differences between the two assemblages. If Bray-Curtis index is 0, the two sites are exactly the same. If it is 1, the two sites are completely different.
+
+![Image3](/datasets/Image3.png)
+
+### Calculating Bray-Curtis Dissimilarity
+
+![Image4](/datasets/Image4.png)
+
+Calculate the Bray-Curtis dissimilarity index for each of the following pairs of assemglages, then answer the additional questions
+
+1. A-B
+2. A-C
+3. A-D
+4. B-C
+5. B-D
+6. C-D
+7. Based on the dissimilarity index, which two sites are most similar?
+8. Which two sites are most different?
+
 ## Part 2: Introduction to R
 
 In Part 1 of this lab, you calculated the dissimilarity scores for four hypothetical assemblages by hand. Paleontologists rarely do such calculations by hand, especially when working with large data sets. From this point forward, we will use the R programming language to conduct our analyses.
@@ -166,6 +191,7 @@ Examine your plot and then answer the following questions:
   + 126/127
   + 101/102
 10. How certain in your answer for questions 9 are you? Explain.
+11. We know that all of the sites included in this analysis come from either Nilpena or Mistaken Point. Does your cluster analysis suggest that there is a difference in the assemblages found in these two regions? Explain your reasoning.
 
 Check your answer for question 9 by examining the Ediacaran distance matrix. You can view the whole matrix by using the following script:
 
@@ -173,7 +199,7 @@ Check your answer for question 9 by examining the Ediacaran distance matrix. You
 sites.dist.matrix <- as.matrix(sites.dist.ediacaran)
 ````
 
-11. Was your answer to question 9 correct? How do you know?
+12. Was your answer to question 9 correct? How do you know?
 
 Now let's conduct our R-mode cluster analysis:
 
@@ -185,10 +211,11 @@ taxa.dist.ediacaran.agnes <- agnes(taxa.dist.ediacaran)
 plot(taxa.dist.ediacaran.agnes)
 ````
 
-12. According to the R-mode cluster diagram, which two taxa are you more likely to find in the same collection:
+13. According to the R-mode cluster diagram, which two taxa are you more likely to find in the same collection:
   + *Aulozoon* and Sprigginamorphs
   + *Helminthoidichnites* and *Wigwamiella*
-13. Explain your reasoning for your answer to question 12.
+14. Explain your reasoning for your answer to question 13.
+15. Is it clear that there are two regional assemblages represented in this analysis?
 
 Let's check by examining the distance matrix. Generate it using the following script:
 
@@ -196,4 +223,51 @@ Let's check by examining the distance matrix. Generate it using the following sc
 taxa.dist.matrix <- as.matrix(taxa.dist.ediacaran)
 ````
 
-14. Was your answer to question 12 correct?
+16. Was your answer to question 12 correct?
+
+Now let's conduct a two-way cluster analysis:
+
+````r
+twoWayEcologyCluster(
+  xDist = sites.dist.ediacaran,
+  yDist = taxa.dist.ediacaran,
+  propAbund = ediacaran.stand)
+````
+
+The resulting plot should show a distinct difference in the taxonomic make up of the two regions.
+
+## Part 4: Non-Metric Multidimensional Scaling
+
+While cluster analysis is a useful and common method of examining relationships within (paleo)ecology, sometimes other methods of visualizing the data can help clarify patterns and relationships within the dataset. **Multidimensional scaling** is a method of visualizing similarity within a complex dataset. While many types of multimensional scaling exist, **nonmetric multidimensional scaling (NMDS)** is useful when examining community-scale (paleo)ecological data.
+
+The following is an excerpt from [Dr. Steven Holland's guide to NMDS](https://strata.uga.edu/software/pdf/mdsTutorial.pdf):
+
+> Nonmetric multidimensional scaling (MDS, also NMDS and NMS) is an ordination technique that differs in several ways from nearly all other ordination methods. In most ordination methods, many axes are calculated, but only a few are viewed, owing to graphical limitations. In MDS, a small number of axes are explicitly chosen prior to the analysis and the data are fitted to those dimensions; there are no hidden axes of variation. Second, most other ordination methods are analytical and therefore result in a single unique solution to a set of data. In contrast, MDS is a numerical technique that iteratively seeks a solution and stops computation when an acceptable solution has been found, or it stops after some pre-specified number of attempts. As a result, an MDS ordination is not a unique solution and a subsequent MDS analysis on the same set of data and following the same methodology will likely result in a somewhat different ordination. Third, MDS is not an eigenvalue-eigenvector technique like principal components analysis or correspondence analysis that ordinates the data such that axis 1 explains the greatest amount of variance, axis 2 explains the next greatest amount of variance, and so on. As a result, an MDS ordination can be rotated, inverted, or centered to any desired configuration.  
+
+> Unlike other ordination methods, MDS makes few assumptions about the nature of the data. For example, principal components analysis assumes linear relationships and reciprocal aver- aging assumes modal relationships. MDS makes neither of these assumptions, so is well suited for a wide variety of data. MDS also allows the use of any distance measure of the samples, unlike other methods which specify particular measures, such as covariance or correlation in PCA or the implied chi-squared measure in detrended correspondence analysis.
+
+Let's us NMDS to analyze the Ediacaran data set. We should be able to use this method to determine which sites come from Nilpena and which sites come from Mistaken Point. To do this analysis, we will use the `metaMDS` function from the `vegan` package:
+
+````r
+# conduct NMDS analysis
+ediacaranNMDS <-metaMDS(ediacaran)
+
+# plot NMDS by sites
+plot(ediacaranNMDS, "sites")
+
+# overlay site numbers
+text(ediacaranNMDS, "sites")
+````
+
+You should see two distinct communities, one made up of sites 101-107 (Mistaken Point) and the other made up sites 108-138 (Nilpena). We can use the same function to plot the species that occur within these communities:
+
+````r
+plot(ediacaranNMDS, "sites")
+text(ediacaranNMDS, "sites")
+text(ediacaranNMDS, "species")
+````
+
+17. Name two species that occur in Mistaken Point.
+18. Name two species that occur in Nilpena.
+
+Submit your answer sheet on Canvas.
