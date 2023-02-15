@@ -182,7 +182,7 @@ sites.dist.ediacaran
 
 # Q-mode analysis
 sites.dist.ediacaran.agnes <- agnes(sites.dist.ediacaran)
-plot(siteDistEdiacaran.agnes)
+plot(sites.dist.ediacaran)
 ````
 Examine your plot and then answer the following questions:
 
