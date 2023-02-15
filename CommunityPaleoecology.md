@@ -139,8 +139,8 @@ For the Pokemon data, the resulting plot is quite messy and difficult to interpr
 
 ````r
 twoWayEcologyCluster(
-  xDist = sites.dist.pokemon.agnes,
-  yDist = taxa.dist.pokemon.agnes,
+  xDist = sites.dist.pokemon,
+  yDist = taxa.dist.pokemon,
   propAbund = pokemon.stand)
 ````
 
