@@ -113,3 +113,72 @@ We have already explored some Ediacaran data in this course (in the Rarefaction 
 
 [Nilpena, Australia](https://youtu.be/koeeS5H3cNI)
 
+The data set that we are going to explore was collected from 38 individual Ediacaran bedding planes. Use the script below to load the community matrix.
+
+````r
+URL <- ("https://raw.githubusercontent.com/robyndahl/GEOL316/master/datasets/ediacaran.csv")
+ediacaran <- read.csv(URL, header = T, row.names = 1)
+````
+
+In this community matrix, rows represent fossil collections, not sites. Columns represent taxa. You might notice that some of the taxa have strange names. This is because most Ediacaran organisms are not closely related to modern groups of organisms and cannot be easily classified into existing taxonomic groups. Until each new fossil organism gets officially described and named, it’s given a descriptive nickname. For example, the fossil shown to the right was nicknamed “anchor” until it was formally described and named *Parvancorina*. The fossil in your data labeled “BOF” is called bundle of fibers and is yet to be formally described and named.
+
+Answer the following questions:
+
+6. Is a raw abundance or relative abundance matrix? How can you tell?
+7. How many specimens of *Charniodiscus* were present in collection 103?
+8. Whicih taxon was most abundant in collection 113? How many specimens of that taxon were present in that collection?
+
+Now let's conduct our Q-mode analysis:
+
+````r
+# convert to relative abundance (spoiler for question 6, above)
+ediacaran.stand <- decostand(ediacaran, method = "total")
+
+# generate a distance matrix
+sites.dist.ediacaran <- vegdist(ediacaran.stand, "bray")
+
+#view distance matrix
+sites.dist.edicaran
+
+# Q-mode analysis
+sites.dist.ediacaran.agnes <- agnes(sites.dist.ediacaran)
+plot(siteDistEdiacaran.agnes)
+````
+Examine your plot and then answer the following questions:
+
+9. Which of the following site pairs do you think are most similar?
+  + 118/128
+  + 126/127
+  + 101/102
+10. How certain in your answer for questions 9 are you? Explain.
+
+Check your answer for question 9 by examining the Ediacaran distance matrix. You can view the whole matrix by using the following script:
+
+````r
+sites.dist.matrix <- as.matrix(sites.dist.ediacaran)
+````
+
+11. Was your answer to question 9 correct? How do you know?
+
+Now let's conduct our R-mode cluster analysis:
+
+````r
+# R-mode analysis
+ediacaran.stand.t <- t(ediacaran.stand)
+taxa.dist.ediacaran <- vegdist(ediacaran.stand.t, "bray")
+taxa.dist.ediacaran.agnes <- agnes(taxa.dist.ediacaran)
+plot(taxa.dist.ediacaran.agnes)
+````
+
+12. According to the R-mode cluster diagram, which two taxa are you more likely to find in the same collection:
+  + *Aulozoon* and Sprigginamorphs
+  + *Helminthoidichnites* and *Wigwamiella*
+13. Explain your reasoning for your answer to question 12.
+
+Let's check by examining the distance matrix. Generate it using the following script:
+
+````r
+taxa.dist.matrix <- as.matrix(taxa.dist.ediacaran)
+````
+
+14. Was your answer to question 12 correct?
