@@ -187,7 +187,7 @@ plot(sites.dist.ediacaran.agnes)
 ````
 Examine your plot and then answer the following questions:
 
-9. Which of the following site pairs do you think are most similar? (Click on `ediacaran.distance` in the environment pane to view matrix)
+9. Which of the following site pairs do you think are most similar?
   + 118/128
   + 126/127
   + 101/102
