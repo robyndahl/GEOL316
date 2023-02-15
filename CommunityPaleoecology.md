@@ -178,7 +178,7 @@ ediacaran.stand <- decostand(ediacaran, method = "total")
 sites.dist.ediacaran <- vegdist(ediacaran.stand, "bray")
 
 #view distance matrix
-sites.dist.edicaran
+sites.dist.ediacaran
 
 # Q-mode analysis
 sites.dist.ediacaran.agnes <- agnes(sites.dist.ediacaran)
