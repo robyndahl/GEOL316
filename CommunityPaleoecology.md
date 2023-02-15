@@ -1,6 +1,18 @@
 # Community Paleoecology
 
-The first part of this lab should be completed on the worksheet handed out in class.
+## Part 1: Introduction
+
+The goal of this activity is for you to learn some of the methods paleontologists use to study diversity in fossil assemblages. Like many different fields in science, modern paleontology has trended more and more towards utilizing “big data” and quantitative analytical techniques, and most modern paleontologists are an equal mix of paleontologist, statistician, and computer programmer. We will not be using advanced statistical methods or coding in this course, but I want to illustrate how paleontologists can use big data to study diversity trends and evolutionary patterns.
+
+### Important Vocabulary
+
+**Term**  | **Definition**
+--------- | ---------------
+Diversity | General concept referring to the variety of kinds of organisms (see *disparity*, *taxonomic richness*)
+Disparity | An aspect of biodiversity reflecting morphological differences among species
+Evenness | how close in numbers each species in an environment is. Mathematically, it is defined as a diversity index, a measure of biodiversity which quantifies how equal the community is numerically. For example, if there is an ecosystem with 2 trilobites and 300 brachiopods, it is not very even, but if there are 25 trilobites and 27 brachiopods, the community is quite even. 
+Taxonomic richness | A measure of biodiversity equal to the number of taxa present
+
 
 ## Part 2: Introduction to R
 
