@@ -15,7 +15,7 @@ Taxonomic richness | A measure of biodiversity equal to the number of taxa prese
 
 ### Comparing Diversity Among Assemblages
 
-![Image1](https://github.com/robyndahl/GEOL316/blob/master/datasets/Image1.png)
+![Image1](/datasets/Image1.png)
 
 ## Part 2: Introduction to R
 
