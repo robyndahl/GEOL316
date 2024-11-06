@@ -64,7 +64,7 @@ After you get to know the layout of R Studio, you're ready get to started on dat
 #download the packages
 install.packages("vegan")
 install.packages("cluster")
-install.pagkages("paleotree")
+install.packages("paleotree")
 
 #open the packages in your current session
 library(vegan)
