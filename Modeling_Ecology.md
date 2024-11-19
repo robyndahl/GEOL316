@@ -11,3 +11,120 @@ Such analyses fall shore when you want to anlyze the relationships among many di
 One way to solve this issue to use **multivariate** analyses. In this lab, we are going to explore a broad class of multivariate analyses known as **ordinations**. The driving principle behind these methods is to "*reduce the dimensionality*" of a multivariate dataset. In other words, we will take a dataset with many variables and summaries their relationships with only a few of those variables.
 
 ## Our First Multivariate Dataset
+
+To complete this lab, we will need to use a few R packages as well as a collection functions originally written by Andrew Zaffos for the now defunct 'Velociraptr' package. To get started, run the following:
+
+#### Step 1
+
+````R
+install.packages("paleobioDB")
+install.packages("vegan")
+
+library(paleobioDB)
+library(vegan)
+````
+
+Next, click this link to access an R script containing the additional functions you need to load: [Velociraptr functions](https://github.com/robyndahl/GEOL316/blob/master/r/Lab8_functions.R)
+
+Great! Now we are ready to download some data.
+
+#### Step 2
+
+We are going to download a very large dataset of bivalve occurrences throughout the entire Phanerozoic. Because this is such a large dataset, we're going to download it in chunks and then combine the chunks together into a single data set.
+
+````R
+# download occurrences, split by era because dataset is so large
+# run each portion separately. ie, wait until the Paleozoic dataset
+# has downloaded before starting the Mesozoic download
+
+Paleozoic <- pbdb_occurrences(
+  base_name = "bivalvia",
+  interval = "Paleozoic",
+  show = c("coords", "classext"),
+  vocab = "pbdb",
+  limit = "all"
+)
+
+Mesozoic <- pbdb_occurrences(
+  base_name = "bivalvia",
+  interval = "Mesozoic",
+  show = c("coords", "classext"),
+  vocab = "pbdb",
+  limit = "all"
+)
+
+Cenozoic <- pbdb_occurrences(
+  base_name = "bivalvia",
+  interval = "Cenozoic",
+  show = c("coords", "classext"),
+  vocab = "pbdb",
+  limit = "all"
+)
+
+# the Mesozoic and Cenozoic sets need some cleaning
+# remove a column called "flags" from each
+Cenozoic$flags <- NULL
+Mesozoic$flags <- NULL
+````
+
+Spend some time examining the three datasets, then answer the following questions on your answer sheet:
+
+1. How many bivalve occurrences are there in Paleozoic era?
+2. How many in the Mesozoic era?
+3. How many in the Cenozoic era?
+4. How many occurrences in total are there? Hint: just add up your previous three answers.
+
+#### Step 2
+
+Now let's combine our three datasets into one and clean it up. We will remove any occrrences that are not resolved to genus, and then remove any fossils that are poorly constrained by age.
+
+````R
+# combine datasets into one set called "Phanerozoic"
+Phanerozoic <- rbind(Paleozoic, Mesozoic, Cenozoic)
+
+# clean up bad genus names
+Phanerozoic <- subset(Phanerozoic, complete.cases(genus))
+
+# download a matrix of geologic epoch definitions and metadata
+Epochs <- downloadTime(Timescale = "international epochs")
+
+# remove poorly constrained fossils
+Phanerozoic <- constrainAges(Phanerozoic,Epochs)
+````
+
+4. How many fossil occurrences are now contained in the Phanerozoic dataset?
+5. How many fossil occurrences were removed due to poorly resolved taxonomy or age constraints?
+
+#### Step 3
+
+Let's turn our newly downloaded and cleaned PBDB data into a community matrix. A community matrix is one of the most fundamental data formats in ecology. In such a matrix, the rows represent different samples, the columns represent different taxa, and the cell valuess represent the abundance of the species in that sample. If you would like to read more about the theory behind community matrices, this is a good paper to start with: [Novak et al. 2016](https://www.annualreviews.org/doi/10.1146/annurev-ecolsys-032416-010215)
+
+Here are a few things to remember about community matrices.
+
+- Samples are sometimes called sites, collections, or quadrats, but those are sub-discipline specific terms that should be avoided. Stick with samples because it is universally applicable.
+- The columns do not have to be species per se. Columns could be other levels of the Linnean Hierarchy (e.g., genera, families) or some other ecological grouping (e.g., different habits, different morphologies).
+- Since there is no such thing as a negative abundance, there should be no negative data in a Community Matrix.
+- Sometimes we may not have abundance data, in which case we can substitute presence-absence data - i.e, is the taxon present or absent in the sample. This is usually represented with a 0 for absent and a 1 for present.
+
+Let's convert our PBDB dataset into a presence-absence dataset using the `presenceMatrix( )` function fo the PBDB package. This function requires that you define which column will count as samples. For now, let's use "`early_interval`" (i.e., geologic age) as the separator. Because we are using a large dataset, this set might take a few minutes.
+
+````R
+# create a presence matrix
+presencePBDB <- presenceMatrix(dataPBDB,
+                               Rows = "early_interval",
+                               Columns = "genus")
+````
+
+Next, we need to use `cullMatrix` to clean up this new matri and remove depauperate samples and rare taxa. We will set it so that a sample needs at least 24 reported taxa for us to consider it reliable, and each taxon must occur in at least 5 samples. These are common minimums for sample sizes in ordination analysis.
+
+````R
+# cull matrix
+presencePBDB <- cullMatrix(presencePBDB,
+                           Rarity = 5,
+                           Richness = 24)
+````
+
+#### Step 4
+
+Now let's actually get into the data!
+
