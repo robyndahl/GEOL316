@@ -69,7 +69,7 @@ Mesozoic$flags <- NULL
 
 Spend some time examining the three datasets, then answer the following questions on your answer sheet:
 
-1. How many bivalve occurrences are there in Paleozoic era?
+1. How many bivalve occurrences are there in Paleozoic era? (hint, you can either ask to see the number of dimensions in this dataset using `dim(Paleozoic)` or look for how many rows or objects there are in the set)
 2. How many in the Mesozoic era?
 3. How many in the Cenozoic era?
 4. How many occurrences in total are there? Hint: just add up your previous three answers.
