@@ -324,7 +324,7 @@ head(ResampledMeans)
 Plot a [kernel density](https://github.com/aazaff/startLearn.R/blob/master/expertConcepts.md#describing-distributions-with-statistics) graph of `ResampledMeans` using the code below.
 
 ````R
-plot(density(ResampledMeans)
+plot(density(ResampledMeans))
 ````
 
 23. Add your plot to your answer sheet.
