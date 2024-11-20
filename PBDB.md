@@ -277,5 +277,46 @@ Lucina <- subset(Cenozoic, Cenozoic$genus == "Lucina")
 PaleoLat <- na.omit(Lucina$paleolat)
 
 # Find the mean paleolat of all Lucina occurrences.
-> OriginalMean <- mean(PaleoLat)
-> OriginalMean
+OriginalMean <- mean(PaleoLat)
+
+# view the result
+OriginalMean
+````
+
+18. What is the mean paleo latitude for all *Lucina* occurrences?
+
+Now let's put a 95% confidence interval around this value. We want to see if we randomly resampled from this underlying distribution, what the distribution of potential means would be.
+
+````R
+# Set a seed so that we all get the same result
+set.seed(100)
+
+# A randomly resample the occurrences of Lucina, and find the mean latitude of our random resample
+NewMean <- mean(sample(PaleoLat, length(PaleoLat), replace = TRUE))
+
+# view the result
+NewMean
+````
+
+19. What is the new mean paleo latitude?
+20. Is your new mean higher or lower than the original mean?
+
+Now, remember the [Law of Large Numbers](https://github.com/aazaff/startLearn.R/blob/master/expertConcepts.md#the-law-of-large-numbers). We need to repeat this process many times to converge on a long term solution. For that we'll need to use a `for(  )` loop.
+
+````R
+# Create a vector from 1 to 1,000, this is how many times we will repeat the resampling procedure
+Repeat <- 1:1000
+
+# Create a blank array to store our answers in.
+ResampledMeans <- array(NA, dim = length(Repeat))
+
+# Use a for( ) loop to repeat the procedure
+for (counter in Repeat) {
+  ResampledMeans[counter] <- mean(sample(PaleoLat, length(PaleoLat), replace = TRUE))
+  }
+  
+# Take a peak at what Resampled Means looks like, the numbers should be the same. If not, go back and re-set your
+# seed, and try again from that step onwards.
+head(ResampledMeans)
+[1] 24.54456 24.72732 25.01327 26.51116 26.06427 26.33383
+````
