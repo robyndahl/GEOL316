@@ -283,7 +283,7 @@ OriginalMean <- mean(PaleoLat)
 OriginalMean
 ````
 
-18. What is the mean paleo latitude for all *Lucina* occurrences?
+20. What is the mean paleo latitude for all *Lucina* occurrences?
 
 Now let's put a 95% confidence interval around this value. We want to see if we randomly resampled from this underlying distribution, what the distribution of potential means would be.
 
@@ -298,8 +298,8 @@ NewMean <- mean(sample(PaleoLat, length(PaleoLat), replace = TRUE))
 NewMean
 ````
 
-20. What is the new mean paleo latitude?
-21. Is your new mean higher or lower than the original mean?
+21. What is the new mean paleo latitude?
+22. Is your new mean higher or lower than the original mean?
 
 Now, remember the [Law of Large Numbers](https://github.com/aazaff/startLearn.R/blob/master/expertConcepts.md#the-law-of-large-numbers). We need to repeat this process many times to converge on a long term solution. For that we'll need to use a `for(  )` loop.
 
@@ -327,7 +327,7 @@ Plot a [kernel density](https://github.com/aazaff/startLearn.R/blob/master/exper
 plot(density(ResampledMeans)
 ````
 
-22. Add your plot to your answer sheet.
+23. Add your plot to your answer sheet.
 
 We don't too much statistical interpretation in the class, but it's useful to know something about the most common types of statistical distributions.
 
@@ -339,7 +339,7 @@ Galton | An exponentiated Gaussian distribution | Galton<-exp(Gaussian)
 
 There are several other common distributions - e.g., degenerate, binomial, multinomial, and poisson - that you might encounter in a statistics class, but the most important for this class are the three above. The Gaussian distribution is also known as the **normal** distribution and Galton is also known as the **log-normal** distribution - because it will be Gaussian if you log it. I mention this because R uses the normal and log-normal terminology for its functions. 
 
-23. Does the distribution look approximately Gaussian? Explain why you think it does or does not.
+24. Does the distribution look approximately Gaussian? Explain why you think it does or does not.
 
 Next, find the mean of `ResampledMeans`:
 
@@ -347,7 +347,7 @@ Next, find the mean of `ResampledMeans`:
 mean(ResampledMeans)
 ````
 
-24. What was the mean of `ResampledMeans`?
+25. What was the mean of `ResampledMeans`?
 
 Sort `ResampledMeans` from lowest to highest and then find the the 2.5th percentile and the 97.5th percentile using the following code:
 
@@ -359,8 +359,8 @@ OrderedMeans <- sort(ResampledMeans)
 quantile(OrderedMeans, probs = c(0.025, 0.975))
 `````
 
-25. What was the 2.5th percentile?
-26. What was the 97.5th percentile?
+26. What was the 2.5th percentile?
+27. What was the 97.5th percentile?
 
 AS you may already know, the values you generated with the code above are the lower and upper confidence intervals of the mean! Now that we understand how to calculate confidence intervals, we can begin to estimate extinction dates for fossils in our `Cenozoic` dataset.
 
@@ -384,8 +384,8 @@ Let's calculate the extinction date for the genus *Lucina* using the `estimateEx
 estimateExtinction(Lucina[,"min_ma"],0.95)
 ````
 
-27. What are the earliest and latest extinction dates for *Lucina*?
-28. Based on the confidence intervals given above, do you think it likely or unlikely that *Lucina* is still alive?
-29. Find the extinction confidence interval for the genus *Dallarca*. Note: You will need to go back and edit the code that we used to analyze *Lucina*. 
-30. A pure reading of the fossil record says that *Dallarca* went extinct at the end of the Pliocene Epoch. Based on its confidence interval, do you think it is possible that *Dallarca* is still extant (alive)?
-31. In this case, should we trust the confidence interval or a pure reading of the fossil record? Explain your reasoning.
+28. What are the earliest and latest extinction dates for *Lucina*?
+29. Based on the confidence intervals given above, do you think it likely or unlikely that *Lucina* is still alive?
+30. Find the extinction confidence interval for the genus *Dallarca*. Note: You will need to go back and edit the code that we used to analyze *Lucina*. 
+31. A pure reading of the fossil record says that *Dallarca* went extinct at the end of the Pliocene Epoch. Based on its confidence interval, do you think it is possible that *Dallarca* is still extant (alive)?
+32. In this case, should we trust the confidence interval or a pure reading of the fossil record? Explain your reasoning.
