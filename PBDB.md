@@ -212,8 +212,8 @@ CenozoicData <- function(Data) {
  }
 
 # run function, then use vegist() to calculate the Jaccard indices
-Cenozoic <- CenozoicData(PresencePBDB)
-vegdist(Cenozoic)
+CenozoicOnly <- CenozoicData(PhanMatrix)
+vegdist(CenozoicOnly, method = "jaccard")
 ````
 
 11. Which two Cenozoic epochs were the least similar?
