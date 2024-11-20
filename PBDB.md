@@ -316,8 +316,6 @@ for (counter in Repeat) {
   }
   
 # Take a peak at what Resampled Means looks like
-# the numbers should be the same. If not, go back and re-set your
-# seed, and try again from that step onwards.
 head(ResampledMeans)
 
 ````
