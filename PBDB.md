@@ -92,8 +92,8 @@ Epochs <- downloadTime(Timescale = "international epochs")
 Phanerozoic <- constrainAges(Phanerozoic,Epochs)
 ````
 
-4. How many fossil occurrences are now contained in the Phanerozoic dataset?
-5. How many fossil occurrences were removed due to poorly resolved taxonomy or age constraints?
+5. How many fossil occurrences are now contained in the Phanerozoic dataset?
+6. How many fossil occurrences were removed due to poorly resolved taxonomy or age constraints?
 
 #### Step 3
 
@@ -142,8 +142,8 @@ TaxaPerEpoch <- taxaPerEpoch(PhanMatrix)
 TaxaPerEpoch
 ````
 
-6. Which epoch has the highest diversity?
-7. Look at the epochs in the [geologic timescale](https://en.wikipedia.org/wiki/Geologic_time_scale#Table_of_geologic_time). What is the timeframe for that epoch? In other words, how long ago (in millions of years) did that epoch start and end?
+7. Which epoch has the highest diversity?
+8. Look at the epochs in the [geologic timescale](https://en.wikipedia.org/wiki/Geologic_time_scale#Table_of_geologic_time). What is the timeframe for that epoch? In other words, how long ago (in millions of years) did that epoch start and end?
 
 Let's look a specific genus of bivalve, *Mytilus*. *Mytilus* is a common mussel. We can search the data to identify the epochs in which *Mytilus* occurred:
 
@@ -151,7 +151,7 @@ Let's look a specific genus of bivalve, *Mytilus*. *Mytilus* is a common mussel.
 which(PhanMatrix[,"Mytilus"] == 1)
 ````
 
-8. Take another look at the [geologic timescale](https://en.wikipedia.org/wiki/Geologic_time_scale#Table_of_geologic_time). In which epochs can we infer that *Mytilus* was present, even though we have no record of them in the PBDB? How did you deduce this?
+9. Take another look at the [geologic timescale](https://en.wikipedia.org/wiki/Geologic_time_scale#Table_of_geologic_time). In which epochs can we infer that *Mytilus* was present, even though we have no record of them in the PBDB? How did you deduce this?
 
 #### Step 5
 #### Basic Similarity Indices
@@ -176,7 +176,7 @@ Jaccard1 <- SharedTaxa / (SharedTaxa + MioceneOnly + PleistoceneOnly)
 Jaccard1
 ````
 
-9. The value produced by the code above generates the Jaccard **similarity** index for the Miocene and Pleistocene. How would you turn that similarity index into a **dissimilarity** index? What value do you get?
+10. The value produced by the code above generates the Jaccard **similarity** index for the Miocene and Pleistocene. How would you turn that similarity index into a **dissimilarity** index? What value do you get?
 
 Rather than calculating everything by hand, we could use a function called `vegdist` from a package called `vegan`. This automatically calculates the Jaccard **dissimilarity** index.
 
@@ -191,8 +191,8 @@ Jaccard2
 Jaccard2["Miocene","Pleistocene"]
 ````
 
-10. What value was produced by `Jaccard2["Miocene","Pleistocene"]`?
-11. Is that value the same as your answer for Question 9?
+11. What value was produced by `Jaccard2["Miocene","Pleistocene"]`?
+12. Is that value the same as your answer for Question 9?
 
 You can see why it's usually easier to find a package with functions that do the type of analysis you need than writing your own code!
 
@@ -216,8 +216,8 @@ CenozoicOnly <- CenozoicData(PhanMatrix)
 vegdist(CenozoicOnly, method = "jaccard")
 ````
 
-11. Which two Cenozoic epochs were the least similar?
-12. What might explain that result?
+13. Which two Cenozoic epochs were the least similar?
+14. What might explain that result?
 
 # Part 2: Calculating Stratigraphic Ranges
 
@@ -235,7 +235,7 @@ For this part of the activity, we will use the `Cenozoic` dataset we generated e
 
 Take a minute to examine that dataset. There are four columns in `Cenozoic` relevant to the age of an organism: `early_interval`, `late_interval`, `max_ma`, and `min_ma`. Because we rarely have a precise date, we generally give the age of an occurrence as a range. This range can be expressed by interval names or by numbers.
 
-13. What do the max_ma and min_ma columns of `Cenozoic` represent? If you do not intuitively know, you can always check the [Paleobiology Database API documentation](https://paleobiodb.org/data1.2/occs/list_doc.html). This document defines all possible data outputs from the PBDB.
+15. What do the max_ma and min_ma columns of `Cenozoic` represent? If you do not intuitively know, you can always check the [Paleobiology Database API documentation](https://paleobiodb.org/data1.2/occs/list_doc.html). This document defines all possible data outputs from the PBDB.
 
 We can use some simple coding to explore different aspects of the dataset. For example, we could figure out which genus has the most occurrences:
 
@@ -245,10 +245,10 @@ max_genus <- max(table(Cenozoic$genus))
 which(table(Cenozoic$genus) == max_genus)
 ````
 
-14. Which genus has the most occurrences?
-15. What kind of bivalve is that? (You can google the genus name)
+16. Which genus has the most occurrences?
+17. What kind of bivalve is that? (You can google the genus name)
 
-With the information we collected in Question 4, we can determine the stratigraphic range of that taxon using the following. Note, you will need to substitue in the genus name where I have written `[GENUS]` in brackets (do not include the brackets).
+With the information we have collected, we can determine the stratigraphic range of that taxon using the following. Note, you will need to substitue in the genus name where I have written `[GENUS]` in brackets (do not include the brackets).
 
 ````R
 # first, separate out the data for [GENUS]
@@ -260,8 +260,8 @@ max([GENUS]$max_ma)
 min([GENUS]$min_ma)
 ````
 
-16. What value did you get for the maximum age occurrence?
-17. What value did you get for the minimum age occurrence?
+18. What value did you get for the maximum age occurrence?
+19. What value did you get for the minimum age occurrence?
 
 ## Confidence intervals
 
@@ -298,8 +298,8 @@ NewMean <- mean(sample(PaleoLat, length(PaleoLat), replace = TRUE))
 NewMean
 ````
 
-19. What is the new mean paleo latitude?
-20. Is your new mean higher or lower than the original mean?
+20. What is the new mean paleo latitude?
+21. Is your new mean higher or lower than the original mean?
 
 Now, remember the [Law of Large Numbers](https://github.com/aazaff/startLearn.R/blob/master/expertConcepts.md#the-law-of-large-numbers). We need to repeat this process many times to converge on a long term solution. For that we'll need to use a `for(  )` loop.
 
@@ -327,7 +327,7 @@ Plot a [kernel density](https://github.com/aazaff/startLearn.R/blob/master/exper
 plot(density(ResampledMeans)
 ````
 
-21. Add your plot to your answer sheet.
+22. Add your plot to your answer sheet.
 
 We don't too much statistical interpretation in the class, but it's useful to know something about the most common types of statistical distributions.
 
@@ -339,7 +339,7 @@ Galton | An exponentiated Gaussian distribution | Galton<-exp(Gaussian)
 
 There are several other common distributions - e.g., degenerate, binomial, multinomial, and poisson - that you might encounter in a statistics class, but the most important for this class are the three above. The Gaussian distribution is also known as the **normal** distribution and Galton is also known as the **log-normal** distribution - because it will be Gaussian if you log it. I mention this because R uses the normal and log-normal terminology for its functions. 
 
-22. Does the distribution look approximately Gaussian? Explain why you think it does or does not.
+23. Does the distribution look approximately Gaussian? Explain why you think it does or does not.
 
 Next, find the mean of `ResampledMeans`:
 
@@ -347,7 +347,7 @@ Next, find the mean of `ResampledMeans`:
 mean(ResampledMeans)
 ````
 
-23. What was the mean of `ResampledMeans`?
+24. What was the mean of `ResampledMeans`?
 
 Sort `ResampledMeans` from lowest to highest and then find the the 2.5th percentile and the 97.5th percentile using the following code:
 
@@ -359,8 +359,8 @@ OrderedMeans <- sort(ResampledMeans)
 quantile(OrderedMeans, probs = c(0.025, 0.975))
 `````
 
-24. What was the 2.5th percentile?
-25. What was the 97.5th percentile?
+25. What was the 2.5th percentile?
+26. What was the 97.5th percentile?
 
 AS you may already know, the values you generated with the code above are the lower and upper confidence intervals of the mean! Now that we understand how to calculate confidence intervals, we can begin to estimate extinction dates for fossils in our `Cenozoic` dataset.
 
@@ -384,8 +384,8 @@ Let's calculate the extinction date for the genus *Lucina* using the `estimateEx
 estimateExtinction(Lucina[,"min_ma"],0.95)
 ````
 
-26. What are the earliest and latest extinction dates for *Lucina*?
-27. Based on the confidence intervals given above, do you think it likely or unlikely that *Lucina* is still alive?
-28. Find the extinction confidence interval for the genus *Dallarca*. Note: You will need to go back and edit the code that we used to analyze *Lucina*. 
-29. A pure reading of the fossil record says that *Dallarca* went extinct at the end of the Pliocene Epoch. Based on its confidence interval, do you think it is possible that *Dallarca* is still extant (alive)?
-30. In this case, should we trust the confidence interval or a pure reading of the fossil record? Explain your reasoning.
+27. What are the earliest and latest extinction dates for *Lucina*?
+28. Based on the confidence intervals given above, do you think it likely or unlikely that *Lucina* is still alive?
+29. Find the extinction confidence interval for the genus *Dallarca*. Note: You will need to go back and edit the code that we used to analyze *Lucina*. 
+30. A pure reading of the fossil record says that *Dallarca* went extinct at the end of the Pliocene Epoch. Based on its confidence interval, do you think it is possible that *Dallarca* is still extant (alive)?
+31. In this case, should we trust the confidence interval or a pure reading of the fossil record? Explain your reasoning.
