@@ -192,7 +192,7 @@ Jaccard2["Miocene","Pleistocene"]
 ````
 
 11. What value was produced by `Jaccard2["Miocene","Pleistocene"]`?
-12. Is that value the same as your answer for Question 9?
+12. Is that value the same as your answer for Question 10?
 
 You can see why it's usually easier to find a package with functions that do the type of analysis you need than writing your own code!
 
