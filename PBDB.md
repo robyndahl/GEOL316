@@ -40,7 +40,7 @@ We are going to download a very large dataset of bivalve occurrences throughout 
 Paleozoic <- pbdb_occurrences(
   base_name = "bivalvia",
   interval = "Paleozoic",
-  show = c("coords", "classext", "paleoloc),
+  show = c("coords", "classext", "paleoloc"),
   vocab = "pbdb",
   limit = "all"
 )
