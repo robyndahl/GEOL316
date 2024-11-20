@@ -148,7 +148,7 @@ TaxaPerEpoch
 Let's look a specific genus of bivalve, *Mytilus*. *Mytilus* is a common mussel. We can search the data to identify the epochs in which *Mytilus* occurred:
 
 ````R
-which(PresencePBDB[,"Mytilus"] == 1)
+which(PhanMatrix[,"Mytilus"] == 1)
 ````
 
 8. Take another look at the [geologic timescale](https://en.wikipedia.org/wiki/Geologic_time_scale#Table_of_geologic_time). In which epochs can we infer that *Mytilus* was present, even though we have no record of them in the PBDB? How did you deduce this?
