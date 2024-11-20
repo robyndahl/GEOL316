@@ -200,13 +200,13 @@ If we want to use the Jaccard index to look at the whole Cenozoic, we can use a 
 
 ````R
 # A function to isolate the Cenozoic data
-CenozoicData <- function(PresencePBDB) {
-     Paleocene <- PresencePBDB["Paleocene",]
-     Eocene <- PresencePBDB["Eocene",]
-     Oligocene <- PresencePBDB["Oligocene",]
-     Miocene <- PresencePBDB["Miocene",]
-     Pliocene <- PresencePBDB["Pliocene",]
-     Pleistocene <- PresencePBDB["Pleistocene",] 
+CenozoicData <- function(Data) {
+     Paleocene <- Data["Paleocene",]
+     Eocene <- Data["Eocene",]
+     Oligocene <- Data["Oligocene",]
+     Miocene <- Data["Miocene",]
+     Pliocene <- Data["Pliocene",]
+     Pleistocene <- Data["Pleistocene",] 
      NewFrame <- data.frame(Paleocene,Eocene,Oligocene,Miocene,Pliocene,Pleistocene)
      return(t(NewFrame))
  }
