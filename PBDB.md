@@ -318,5 +318,74 @@ for (counter in Repeat) {
 # Take a peak at what Resampled Means looks like, the numbers should be the same. If not, go back and re-set your
 # seed, and try again from that step onwards.
 head(ResampledMeans)
-[1] 24.54456 24.72732 25.01327 26.51116 26.06427 26.33383
+[1] 24.56618 26.14061 22.71489 25.62516 26.32361 24.89735
 ````
+
+Plot a [kernel density](https://github.com/aazaff/startLearn.R/blob/master/expertConcepts.md#describing-distributions-with-statistics) graph of `ResampledMeans` using the code below.
+
+````R
+plot(density(ResampledMeans)
+````
+
+21. Add your plot to your answer sheet.
+
+We don't too much statistical interpretation in the class, but it's useful to know something about the most common types of statistical distributions.
+
+Distribution | Description | Example
+------ | ----- | ----- 
+Uniform | All numbers are equally common | Uniform<-c(1,2,3,4,5)
+Gaussian | Numbers become steadily less common away from the mean | Gaussian<-c(1,2,2,3,3,3,4,4,5)
+Galton | An exponentiated Gaussian distribution | Galton<-exp(Gaussian)
+
+There are several other common distributions - e.g., degenerate, binomial, multinomial, and poisson - that you might encounter in a statistics class, but the most important for this class are the three above. The Gaussian distribution is also known as the **normal** distribution and Galton is also known as the **log-normal** distribution - because it will be Gaussian if you log it. I mention this because R uses the normal and log-normal terminology for its functions. 
+
+22. Does the distribution look approximately Gaussian? Explain why you think it does or does not.
+
+Next, find the mean of `ResampledMeans`:
+
+````R
+mean(ResampledMeans)
+````
+
+23. What was the mean of `ResampledMeans`?
+
+Sort `ResampledMeans` from lowest to highest and then find the the 2.5th percentile and the 97.5th percentile using the following code:
+
+````R
+# sort the means
+OrderedMeans <- sort(ResampledMeans)
+
+# find the 2.5th and 97.5th percentiles
+quantile(OrderedMeans, probs = c(0.025, 0.975))
+`````
+
+24. What was the 2.5th percentile?
+25. What was the 97.5th percentile?
+
+AS you may already know, the values you generated with the code above are the lower and upper confidence intervals of the mean! Now that we understand how to calculate confidence intervals, we can begin to estimate extinction dates for fossils in our `Cenozoic` dataset.
+
+To do so, we will use the following function:
+
+````R
+# From Marshall's (1990) adaptation of Strauss and Sadler.
+estimateExtinction <- function(OccurrenceAges, ConfidenceLevel=.95)  {
+  # Find the number of unique "Horizons"
+  NumOccurrences<-length(unique(OccurrenceAges))-1
+  Alpha<-((1-ConfidenceLevel)^(-1/NumOccurrences))-1
+  Lower<-min(OccurrenceAges)
+  Upper<-min(OccurrenceAges)-(Alpha*10)
+  return(setNames(c(Lower,Upper),c("Earliest","Latest")))
+  }
+````
+
+Let's calculate the extinction date for the genus *Lucina* using the `estimateExtinction( )` function.
+
+````R
+estimateExtinction(Lucina[,"min_ma"],0.95)
+````
+
+26. What are the earliest and latest extinction dates for *Lucina*?
+27. Based on the confidence intervals given above, do you think it likely or unlikely that *Lucina* is still alive?
+28. Find the extinction confidence interval for the genus *Dallarca*. Note: You will need to go back and edit the code that we used to analyze *Lucina*. 
+29. A pure reading of the fossil record says that *Dallarca* went extinct at the end of the Pliocene Epoch. Based on its confidence interval, do you think it is possible that *Dallarca* is still extant (alive)?
+30. In this case, should we trust the confidence interval or a pure reading of the fossil record? Explain your reasoning.
