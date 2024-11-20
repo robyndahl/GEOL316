@@ -110,7 +110,7 @@ Let's convert our PBDB dataset into a presence-absence dataset using the `presen
 
 ````R
 # create a presence matrix
-PhanMatrix <- presenceMatrix(dataPBDB,
+PhanMatrix <- presenceMatrix(Phanerozoic,
                                Rows = "early_interval",
                                Columns = "genus")
 ````
