@@ -1,4 +1,4 @@
-# Modeling Ecological Gradients
+# Part 1: Modeling Ecological Gradients
 
 Modeling ecological gradients using multivariate data analyses.
 
@@ -110,7 +110,7 @@ Let's convert our PBDB dataset into a presence-absence dataset using the `presen
 
 ````R
 # create a presence matrix
-presencePBDB <- presenceMatrix(dataPBDB,
+PhanMatrix <- presenceMatrix(dataPBDB,
                                Rows = "early_interval",
                                Columns = "genus")
 ````
@@ -119,7 +119,7 @@ Next, we need to use `cullMatrix` to clean up this new matri and remove depauper
 
 ````R
 # cull matrix
-presencePBDB <- cullMatrix(presencePBDB,
+PhanMatrix <- cullMatrix(PhanMatrix,
                            Rarity = 5,
                            Richness = 24)
 ````
@@ -128,14 +128,30 @@ presencePBDB <- cullMatrix(presencePBDB,
 
 Now let's actually get into the data! We'll start by generating a table that shows the number of bivalve genera in each geologic epoch:
 
+````R
+# create a simple function to build this table
+taxaPerEpoch <- function(Data) {
+  Blanklist <- apply(Data,1,sum)
+  return(as.matrix(Blanklist))
+}
+
+# create the table
+TaxaPerEpoch <- taxaPerEpoch(PhanMatrix)
+
+# print the table
+TaxaPerEpoch
+````
 
 6. Which epoch has the highest diversity?
-7. What is the timeframe for that epoch? In other words, how long ago (in millions of years) did that epoch start and end?
+7. Look at the epochs in the [geologic timescale](https://en.wikipedia.org/wiki/Geologic_time_scale#Table_of_geologic_time). What is the timeframe for that epoch? In other words, how long ago (in millions of years) did that epoch start and end?
 
 Let's look a specific genus of bivalve, *Mytilus*. *Mytilus* is a common mussel. We can search the data to identify the epochs in which *Mytilus* occurred:
 
+````R
+which(PresencePBDB[,"Mytilus"] == 1)
+````
 
-8. Look at the epochs in the [geologic timescale](https://en.wikipedia.org/wiki/Geologic_time_scale#Table_of_geologic_time). Using your answer to question 3, in which epochs can we infer that *Mytilus* was present, even though we have no record of them in the PBDB? How did you deduce this?
+8. Take another look at the [geologic timescale](https://en.wikipedia.org/wiki/Geologic_time_scale#Table_of_geologic_time). In which epochs can we infer that *Mytilus* was present, even though we have no record of them in the PBDB? How did you deduce this?
 
 #### Step 5
 #### Basic Similarity Indices
@@ -146,13 +162,13 @@ We could calculate the Jaccard index for our data by hand using the following co
 
 ````R
 # Find the number of taxa present only in the Miocene
-MioceneOnly <- length(which(PresencePBDB["Miocene",] == 1 & PresencePBDB["Pleistocene",] == 0))
+MioceneOnly <- length(which(PhanMatrix["Miocene",] == 1 & PhanMatrix["Pleistocene",] == 0))
 
 # Then find the number of taxa present only in the Pleistocene
-PleistoceneOnly <- length(which(PresencePBDB["Pleistocene",] == 1 & PresencePBDB["Miocene",] == 0))
+PleistoceneOnly <- length(which(PhanMatrix["Pleistocene",] == 1 & PhanMatrix["Miocene",] == 0))
 
 # Then find the number of taxa that are present in both epochs
-SharedTaxa <- length(which(PresencePBDB["Pleistocene",] == 1 & PresencePBDB["Miocene",] == 1))
+SharedTaxa <- length(which(PhanMatrix["Pleistocene",] == 1 & PhanMatrix["Miocene",] == 1))
 
 # Finally, conduct the Jaccard similarity test
 Jaccard1 <- SharedTaxa / (SharedTaxa + MioceneOnly + PleistoceneOnly)
@@ -160,11 +176,13 @@ Jaccard1 <- SharedTaxa / (SharedTaxa + MioceneOnly + PleistoceneOnly)
 Jaccard1
 ````
 
-Or we could use a function from a package called `vegan`.
+9. The value produced by the code above generates the Jaccard **similarity** index for the Miocene and Pleistocene. How would you turn that similarity index into a **dissimilarity** index? What value do you get?
+
+Rather than calculating everything by hand, we could use a function called `vegdist` from a package called `vegan`. This automatically calculates the Jaccard **dissimilarity** index.
 
 ````R
 # Turn the info returned by vegdist( ) into a more useful object, a matrix
-Jaccard2 <- as.matrix(vegdist(PresencePBDB, method = "jaccard"))
+Jaccard2 <- as.matrix(vegdist(PhanMatrix, method = "jaccard"))
 
 # view the whole matrix
 Jaccard2
@@ -173,12 +191,12 @@ Jaccard2
 Jaccard2["Miocene","Pleistocene"]
 ````
 
-9. What value was produced by `Jaccard1`?
 10. What value was produced by `Jaccard2["Miocene","Pleistocene"]`?
+11. Is that value the same as your answer for Question 9?
 
 You can see why it's usually easier to find a package with functions that do the type of analysis you need than writing your own code!
 
-Now let's look at the Jaccard index for the Cenozoic only. Run the following script:
+If we want to use the Jaccard index to look at the whole Cenozoic, we can use a function to generate all the comparisons at once:
 
 ````R
 # A function to isolate the Cenozoic data
@@ -198,9 +216,10 @@ Cenozoic <- CenozoicData(PresencePBDB)
 vegdist(Cenozoic)
 ````
 
-11. Which two Cenozoic epochs were the least similar? What might explain that result?
+11. Which two Cenozoic epochs were the least similar?
+12. What might explain that result?
 
-#### Step 6
+# Part 2: Calculating Stratigraphic Ranges
 
 
 
