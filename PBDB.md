@@ -315,11 +315,17 @@ for (counter in Repeat) {
   ResampledMeans[counter] <- mean(sample(PaleoLat, length(PaleoLat), replace = TRUE))
   }
   
-# Take a peak at what Resampled Means looks like, the numbers should be the same. If not, go back and re-set your
+# Take a peak at what Resampled Means looks like
+# the numbers should be the same. If not, go back and re-set your
 # seed, and try again from that step onwards.
 head(ResampledMeans)
-[1] 24.56618 26.14061 22.71489 25.62516 26.32361 24.89735
+
 ````
+Your answer should look the same as mine:
+
+[1] 24.56618 26.14061 22.71489 25.62516 26.32361 24.89735
+
+If it does not, reset the seed and try again from that step onwards.
 
 Plot a [kernel density](https://github.com/aazaff/startLearn.R/blob/master/expertConcepts.md#describing-distributions-with-statistics) graph of `ResampledMeans` using the code below.
 
