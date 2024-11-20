@@ -221,7 +221,61 @@ vegdist(Cenozoic)
 
 # Part 2: Calculating Stratigraphic Ranges
 
+Calculating confidence intervals for the stratigraphic ranges of taxa.
 
+## Basic Concepts
 
+The easiest way to calculate the stratigraphic range of a fossil is to find the age of its oldest occurrence (sometimes called *First Occurrence*, **FO**) and its youngest occurrence (sometimes called *Last Occurrence*, **LO**).
 
+Today we are going to exclusively focus on calculating confidence intervals for last occurrences (time of extinction), but the principles are the same for calculating confidence intervals on origination rates.
 
+#### Step 1
+
+For this part of the activity, we will use the `Cenozoic` dataset we generated early, which includes all bivalve occurrences from throughout the Cenozoic.
+
+Take a minute to examine that dataset. There are four columns in `Cenozoic` relevant to the age of an organism: `early_interval`, `late_interval`, `max_ma`, and `min_ma`. Because we rarely have a precise date, we generally give the age of an occurrence as a range. This range can be expressed by interval names or by numbers.
+
+13. What do the max_ma and min_ma columns of `Cenozoic` represent? If you do not intuitively know, you can always check the [Paleobiology Database API documentation](https://paleobiodb.org/data1.2/occs/list_doc.html). This document defines all possible data outputs from the PBDB.
+
+We can use some simple coding to explore different aspects of the dataset. For example, we could figure out which genus has the most occurrences:
+
+````R
+max_genus <- max(table(Cenozoic$genus))
+
+which(table(Cenozoic$genus) == max_genus)
+````
+
+14. Which genus has the most occurrences?
+15. What kind of bivalve is that? (You can google the genus name)
+
+With the information we collected in Question 4, we can determine the stratigraphic range of that taxon using the following. Note, you will need to substitue in the genus name where I have written `[GENUS]` in brackets (do not include the brackets).
+
+````R
+# first, separate out the data for [GENUS]
+[GENUS] <- Cenozoic[which(Cenozoic$genus == "[GENUS]"),]
+
+# then, determine the maximum and minimum age occurrences
+max([GENUS]$max_ma)
+
+min([GENUS]$min_ma)
+````
+
+16. What value did you get for the maximum age occurrence?
+17. What value did you get for the minimum age occurrence?
+
+## Confidence intervals
+
+In statistics we like to measure uncertainty. We often do this with something called a **confidence interval**. Google defines a confidence interval as, "a range of values so defined that there is a specified probability that the value of a parameter lies within it." Under this definition, a 95% confidence interval ranging from 0-10, means that there is a 95% probability that the true value of the parameter we are measuring lies somewhere between 0 and 10.
+
+This definition/interpretation of confidence intervals has received ***extensive criticism*** in recent years, though you may still see it presented in some textbooks that way. The criticism stems, partly, from a broader debate between two different statistical philosophies about the nature of probability. We will not dive into this debate, but I want you to be aware that *many* statisticians have a deep disapproval of the definition given above. Nevertheless, it is the one we will use moving forward for this lab exercise.
+
+````R
+# Subset the data so that we get the genus *Lucina*
+Lucina <- subset(Cenozoic, Cenozoic$genus == "Lucina")
+
+# Isolate the paleolatitude data, while also omitting any entries with missing data (NA)
+PaleoLat <- na.omit(Lucina$paleolat)
+
+# Find the mean paleolat of all Lucina occurrences.
+> OriginalMean <- mean(PaleoLat)
+> OriginalMean
