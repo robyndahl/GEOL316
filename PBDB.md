@@ -321,7 +321,9 @@ head(ResampledMeans)
 ````
 Your answer should look the same as mine:
 
+````R
 [1] 24.56618 26.14061 22.71489 25.62516 26.32361 24.89735
+````
 
 If it does not, reset the seed and try again from that step onwards.
 
