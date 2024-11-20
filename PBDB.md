@@ -40,7 +40,7 @@ We are going to download a very large dataset of bivalve occurrences throughout 
 Paleozoic <- pbdb_occurrences(
   base_name = "bivalvia",
   interval = "Paleozoic",
-  show = c("coords", "classext"),
+  show = c("coords", "classext", "paleoloc),
   vocab = "pbdb",
   limit = "all"
 )
@@ -48,7 +48,7 @@ Paleozoic <- pbdb_occurrences(
 Mesozoic <- pbdb_occurrences(
   base_name = "bivalvia",
   interval = "Mesozoic",
-  show = c("coords", "classext"),
+  show = c("coords", "classext", "paleoloc"),
   vocab = "pbdb",
   limit = "all"
 )
@@ -56,7 +56,7 @@ Mesozoic <- pbdb_occurrences(
 Cenozoic <- pbdb_occurrences(
   base_name = "bivalvia",
   interval = "Cenozoic",
-  show = c("coords", "classext"),
+  show = c("coords", "classext", "paleoloc"),
   vocab = "pbdb",
   limit = "all"
 )
