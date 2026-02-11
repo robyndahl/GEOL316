@@ -123,7 +123,7 @@ The cluster diagram you have generated clusters sites based on how similar they 
 6. Which site (or sites) is most similar to yours? Is it the same site you selected from you answer to question 1?
 7. Which site (or sites) is least similar to yours? Is it the same site you selected from you answer to question 3?
 8. Are there any outliers in the collection? How can you tell?
-9. If you answered yes to Question 5, examine the original (raw) data to try to determine what sets the outlier site apart from the others.
+9. If you answered yes to Question 8, examine the original (raw) data to try to determine what sets the outlier site apart from the others.
 
 The type of analysis you just conducted is called Q-mode cluster analysis. The result of Q-mode cluster analysis tells you which sites are most similar. Sometimes paleontologists and ecologists want to look at the data in a different way, to determine which taxa are most likely to occur together. This is called R-mode cluster analysis. To conduct R-mode cluster analysis, you have to transpose the community matrix by flipping the rows and columns. Use the following script to conduct R-mode cluster analysis on the Pokemon data.
 
