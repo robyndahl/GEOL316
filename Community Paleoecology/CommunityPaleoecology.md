@@ -196,7 +196,7 @@ Examine your plot and then answer the following questions:
   + 118/128
   + 126/127
   + 101/102
-14. How certain in your answer for questions 9 are you? Explain.
+14. How certain in your answer for questions 13 are you? Explain.
 15. Now check the Bray-Curtis dissimilarity index data to confirm your answers to Questions 13 and 14. If you can't remember how to do this, revisit the code above to figure out how to view the Bray-Curtix Index.
 16. We know that all of the sites included in this analysis come from either Nilpena or Mistaken Point. Does your cluster analysis suggest that there is a difference in the assemblages found in these two regions? Explain your reasoning.
 
