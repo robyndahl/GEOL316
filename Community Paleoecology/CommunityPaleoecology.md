@@ -99,7 +99,7 @@ The next step is to calculate the Bary-Curtis distance index numbers for each of
 
 ````r
 # generate a new matrix for the distance index
-sites.dist.pokemon <- vegdist(pokemon.stand, "bray")
+sites.dist.pokemon <- as.matrix(vegdist(pokemon.stand, "bray"))
 
 # view the distance matrix
 sites.dist.pokemon
