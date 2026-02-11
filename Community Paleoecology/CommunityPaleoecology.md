@@ -142,7 +142,11 @@ plot(taxa.dist.pokemon.agnes)
 For the Pokemon data, the resulting plot is quite messy and difficult to interpret. It might be more useful to compare the two types of cluster analysis using a heatmap. We can use the function `heatmap()` to do this:
 
 ````r
+# first transform the standardized data into a matrix
+pokemon.heat <- as.matrix(pokemon.stand)
 
+# then, generate the heatmap
+heatmap(pokemon.heat)
 ````
 
 The resulting plot helps you easily determine which sites taxa occur in, and the pattern in occurences should help you see which sites are most similar.
