@@ -169,9 +169,9 @@ In this community matrix, rows represent fossil collections, not sites. Columns 
 
 Answer the following questions:
 
-6. Is a raw abundance or relative abundance matrix? How can you tell?
-7. How many specimens of *Charniodiscus* were present in collection 103?
-8. Which taxon was most abundant in collection 113? How many specimens of that taxon were present in that collection?
+10. Is a raw abundance or relative abundance matrix? How can you tell?
+11. How many specimens of *Charniodiscus* were present in collection 103?
+12. Which taxon was most abundant in collection 113? How many specimens of that taxon were present in that collection?
 
 Now let's conduct our Q-mode analysis:
 
@@ -192,12 +192,13 @@ plot(sites.dist.ediacaran.agnes)
 ````
 Examine your plot and then answer the following questions:
 
-9. Which of the following site pairs do you think are most similar?
+13. Which of the following site pairs do you think are most similar?
   + 118/128
   + 126/127
   + 101/102
-10. How certain in your answer for questions 9 are you? Explain.
-11. We know that all of the sites included in this analysis come from either Nilpena or Mistaken Point. Does your cluster analysis suggest that there is a difference in the assemblages found in these two regions? Explain your reasoning.
+14. How certain in your answer for questions 9 are you? Explain.
+15. Now check the Bray-Curtis dissimilarity index data to confirm your answers to Questions 13 and 14. If you can't remember how to do this, revisit the code above to figure out how to view the Bray-Curtix Index.
+16. We know that all of the sites included in this analysis come from either Nilpena or Mistaken Point. Does your cluster analysis suggest that there is a difference in the assemblages found in these two regions? Explain your reasoning.
 
 Check your answer for question 9 by examining the Ediacaran distance matrix. You can view the whole matrix by using the following script:
 
@@ -205,7 +206,7 @@ Check your answer for question 9 by examining the Ediacaran distance matrix. You
 sites.dist.matrix <- as.matrix(sites.dist.ediacaran)
 ````
 
-12. Was your answer to question 9 correct? How do you know?
+17. Was your answer to question 9 correct? How do you know?
 
 Now let's conduct our R-mode cluster analysis:
 
@@ -217,11 +218,11 @@ taxa.dist.ediacaran.agnes <- agnes(taxa.dist.ediacaran)
 plot(taxa.dist.ediacaran.agnes)
 ````
 
-13. According to the R-mode cluster diagram, which two taxa are you more likely to find in the same collection:
+18. According to the R-mode cluster diagram, which two taxa are you more likely to find in the same collection:
   + *Aulozoon* and Sprigginamorphs
   + *Helminthoidichnites* and *Wigwamiella*
-14. Explain your reasoning for your answer to question 13.
-15. Is it clear that there are two regional assemblages represented in this analysis?
+19. Explain your reasoning for your answer to question 13.
+20. Is it clear that there are two regional assemblages represented in this analysis?
 
 Let's check by examining the distance matrix. Generate it using the following script:
 
@@ -229,7 +230,7 @@ Let's check by examining the distance matrix. Generate it using the following sc
 taxa.dist.matrix <- as.matrix(taxa.dist.ediacaran)
 ````
 
-16. Was your answer to question 13 correct?
+21. Was your answer to question 13 correct?
 
 Now let's conduct a two-way cluster analysis:
 
@@ -273,7 +274,7 @@ text(ediacaranNMDS, "sites")
 text(ediacaranNMDS, "species")
 ````
 
-17. Name two species that occur in Mistaken Point.
-18. Name two species that occur in Nilpena.
+22. Name two species that occur in Mistaken Point.
+23. Name two species that occur in Nilpena.
 
 Submit your answer sheet on Canvas.
