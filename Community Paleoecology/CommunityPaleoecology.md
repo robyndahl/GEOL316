@@ -213,7 +213,7 @@ plot(taxa.dist.ediacaran.agnes)
 17. According to the R-mode cluster diagram, which two taxa are you more likely to find in the same collection:
   + *Aulozoon* and Sprigginamorphs
   + *Helminthoidichnites* and *Wigwamiella*
-18. Explain your reasoning for your answer to question 13.
+18. Explain your reasoning for your answer to question 17.
 19. Is it clear that there are two regional assemblages represented in this analysis?
 
 Let's check by examining the distance matrix. Generate it using the following script:
