@@ -222,7 +222,7 @@ Let's check by examining the distance matrix. Generate it using the following sc
 taxa.dist.matrix <- as.matrix(taxa.dist.ediacaran)
 ````
 
-20. Was your answer to question 13 correct?
+20. Was your answer to question 17 correct?
 
 Now let's conduct a two-way cluster analysis:
 
