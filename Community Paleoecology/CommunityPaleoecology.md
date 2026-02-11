@@ -200,14 +200,6 @@ Examine your plot and then answer the following questions:
 15. Now check the Bray-Curtis dissimilarity index data to confirm your answers to Questions 13 and 14. If you can't remember how to do this, revisit the code above to figure out how to view the Bray-Curtix Index.
 16. We know that all of the sites included in this analysis come from either Nilpena or Mistaken Point. Does your cluster analysis suggest that there is a difference in the assemblages found in these two regions? Explain your reasoning.
 
-Check your answer for question 9 by examining the Ediacaran distance matrix. You can view the whole matrix by using the following script:
-
-````r
-sites.dist.matrix <- as.matrix(sites.dist.ediacaran)
-````
-
-17. Was your answer to question 9 correct? How do you know?
-
 Now let's conduct our R-mode cluster analysis:
 
 ````r
@@ -218,11 +210,11 @@ taxa.dist.ediacaran.agnes <- agnes(taxa.dist.ediacaran)
 plot(taxa.dist.ediacaran.agnes)
 ````
 
-18. According to the R-mode cluster diagram, which two taxa are you more likely to find in the same collection:
+17. According to the R-mode cluster diagram, which two taxa are you more likely to find in the same collection:
   + *Aulozoon* and Sprigginamorphs
   + *Helminthoidichnites* and *Wigwamiella*
-19. Explain your reasoning for your answer to question 13.
-20. Is it clear that there are two regional assemblages represented in this analysis?
+18. Explain your reasoning for your answer to question 13.
+19. Is it clear that there are two regional assemblages represented in this analysis?
 
 Let's check by examining the distance matrix. Generate it using the following script:
 
@@ -230,7 +222,7 @@ Let's check by examining the distance matrix. Generate it using the following sc
 taxa.dist.matrix <- as.matrix(taxa.dist.ediacaran)
 ````
 
-21. Was your answer to question 13 correct?
+20. Was your answer to question 13 correct?
 
 Now let's conduct a two-way cluster analysis:
 
@@ -274,7 +266,7 @@ text(ediacaranNMDS, "sites")
 text(ediacaranNMDS, "species")
 ````
 
-22. Name two species that occur in Mistaken Point.
-23. Name two species that occur in Nilpena.
+21. Name two species that occur in Mistaken Point.
+22. Name two species that occur in Nilpena.
 
 Submit your answer sheet on Canvas.
