@@ -268,5 +268,3 @@ text(ediacaranNMDS, "species")
 
 21. Name two species that occur in Mistaken Point.
 22. Name two species that occur in Nilpena.
-
-Submit your answer sheet on Canvas.
