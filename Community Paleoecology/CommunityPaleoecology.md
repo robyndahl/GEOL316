@@ -77,7 +77,7 @@ Now let's load in some data! There are different ways of doing this depending on
 
 ````r
 #tell R where the data is hosted
-URL <- ("https://raw.githubusercontent.com/robyndahl/GEOL316/master/datasets/pokemon2024.csv")
+URL <- ("https://raw.githubusercontent.com/robyndahl/GEOL316/refs/heads/master/datasets/pokemon2026.csv")
 
 #load the data
 pokemon <- read.csv(URL, header = T, row.names = 1)
