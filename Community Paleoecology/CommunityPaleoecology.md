@@ -171,7 +171,7 @@ Answer the following questions:
 
 6. Is a raw abundance or relative abundance matrix? How can you tell?
 7. How many specimens of *Charniodiscus* were present in collection 103?
-8. Whicih taxon was most abundant in collection 113? How many specimens of that taxon were present in that collection?
+8. Which taxon was most abundant in collection 113? How many specimens of that taxon were present in that collection?
 
 Now let's conduct our Q-mode analysis:
 
