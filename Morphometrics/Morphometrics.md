@@ -14,8 +14,29 @@ In this week’s lab, we will be learning about ***geometric morphometrics***, a
 
 In this lab, you will learn how to collect 2D landmark data from photographs, how to conduct geometric morphometric analyes on those landmark data, and how to interpret your results. Our study organism for this lab will be trilobites and all of our data will be collected from photographs compiled by Serra et al. (2023) for [Trilomorph](https://github.com/balsedie/trilomorph), an open-access database for trilobite morphometrics.
 
-## Part 2: Preparing Trilobite Data for Analysis
+### Software Requirements and Data
 
+To complete this lab, you will need the following software:
+
++ R Studio: available on all campus computers, free to download at: [https://posit.co/downloads/](https://posit.co/downloads/)
++ FIJI: also known as ImageJ, free to download at: [https://fiji.sc/](https://fiji.sc/)
++ Datasets: all necessary datasets, include images for analysis, are available on Canvas.
+
+## Part 2: Collecting 2D Landmark Data from Trilobite Specimens
+
+The first step in morphometrics analysis is to collect landmark data from your specimens. We will be using a collection 18 trilobite photos and a landmark scheme developed by for the TriloMorph database. 
+
+**STEP 1:** To begin, create a folder on the desktop of your computer called "Morphometrics". This will be your working directory for the lab, so all of your data and other files will need to be stored in that file. Next, download the collection of photos labeled `trilobites.zip`. Unzip the file and save it in your Morphometrics folder. Spend a few minutes reviewing the images so that you are familiar with the range of variation among the specimens.
+
+**STEP 2:** Use FIJI to collect your landmark data. But first, some things to remember about collecting landmark data:
+
++ Each image must have the same number of landmarks
++ The landmarks on each image must be collected in the same order
++ Landmarks are ordinarly placed on homologous points, or points that can be replicated from object to object based on common morphology, common fuction, or common geometry. Luckily for you, I have already determined where the landmarks will be placed, so your main task is learning to identify those places on each of the specimens. The landmark scheme is illustrated and described below:
+
+
+
+## Part 3: Utilizing the TriloMorph Dataset
 To begin, let's install and load the necessary packages and scripts we will use to conduct our analysis. The research group at TriloMorph has developed the following set of scripts that automatically loads the required packages and functions neccesary. Copy, paste, and run this line in your R console:
 
 ````r
