@@ -32,7 +32,20 @@ The first step in morphometrics analysis is to collect landmark data from your s
 
 + Each image must have the same number of landmarks
 + The landmarks on each image must be collected in the same order
-+ Landmarks are ordinarly placed on homologous points, or points that can be replicated from object to object based on common morphology, common fuction, or common geometry. Luckily for you, I have already determined where the landmarks will be placed, so your main task is learning to identify those places on each of the specimens. The landmark scheme is illustrated and described below:
++ Landmarks are ordinarly placed on homologous points, or points that can be replicated from object to object based on common morphology, common fuction, or common geometry. Luckily for you, I have already determined where the landmarks will be placed, so your main task is learning to identify those places on each of the specimens. The landmark scheme is illustrated and described below.
+
+| Landmark | Description                                                      |
+|----------| -----------------------------------------------------------------|
+| LM1      | Anteriormost point of the saggital cephalic length without spine |
+| LM2      | Anteriormost point of the saggital glabellar length              |
+| LM3      | Intersection between the saggital axis and the occipital furrow  |
+| LM4      | Posteriormost point of the saggital cephalic length              |
+| LM5      | Maximum transversal glabellar width |
+| LM6      | Intersection between the occipital and axial furrows |
+| LM7      | Intersection between the posterior margin and the axial furrow |
+| LM8      | Anteriormost end of the eye |
+
+
 
 
 
