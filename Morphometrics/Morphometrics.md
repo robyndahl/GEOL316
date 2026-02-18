@@ -95,6 +95,10 @@ Great, now your data is loaded and ready to be analyzed! The first analysis we w
 
 >Generalized Procrustes Analysis (GPA: Gower 1975; Rohlf and Slice 1990) is the primary means by which shape variables are obtained from landmark data. GPA translates all specimens to the origin, scales them to unit-centroid size, and optimally rotates them (using a least-squares criterion) until the coordinates of corresponding points align as closely as possible. The resulting aligned Procrustes coordinates represent the shape of each specimen, and are found in a curved space related to Kendall's shape space (Kendall 1984). Typically, these are projected into a linear tangent space yielding Kendall's tangent space coordinates (Dyrden and Mardia 1993; Rohlf 1999), which are used for subsequent multivariate analyses.
 
+In other words, GPA takes your landmark data and aligns all the specimens by transforming them in three ways: 1) translation, 2) rotation, and 3) scale. Figure 3, below, shows this process.
+
+![Figure3](/Morphometrics/gpa.png)
+
 To conduct a GPA on your data, complete the following:
 
 ````r
