@@ -64,6 +64,14 @@ Use the landmark descriptions in the table above along with the diagrams below t
 
 To collect your landmark data, open the first image in your images folder in FIJI. Use the multipoint collector tool to place the landmarks on the image. Remember, you *must* place them in numerical order (1-16). If you need to move a landmark after you place it, you can just click and drag the point. Once you have placed all 16 landmarks, use **CTRL-M** to record them in the measurement window (a spreadsheet that will populate with all of your data as you collect from each image). FIJI will collected more information than we are interested in, and you don't need to pay any attention to the first four columns on the sheet (Area, Mean, Min, Max). We are only interested in the cartesian coordinates of our landmarks (X, Y). When you are done with your first image, use CTRL-SHIFT-O to open the next image. Repeat until you have collected landmark data from all 30 images.
 
+**STEP 3:** When you have collected landmark data for all of the images, copy and paste the data from the FIJI measurements into Excel. We need to format this spreadsheet so that it can be saved as a `.tps` file that can be used by the `geomorph` R package. To do this, insert blank rows before and after the block of rows for each specimen. Above the x-coordinate, enter the text `LM=16`. Below the x-coordinate, enter the text `ID=` follwed by the specimen number (e.g., `ID=1` or `ID=11`). Your spreadsheet should end up looking something like this:
+
+![Figure3](/Morphometrics/Spreadsheet.png)
+
+To save this as a `.tps` file, highlight the two columns your coordinate data (columns F & G in the example picture) and copy. In Word, use `Paste Special` to paste the data as **unformatted text**. Some programs don't like tab characters, which are inserted by default when you paste from Excel. Remove them with `Edit > Find > Advanced Replace` and `Replace`. To do this, click the arrow in the lower left to show options. Click the "replace" tab at the top to open both Find and Replace input bars. Enter `^t` in the "Find What" bar and enter a single space in the "Replace With" bar. Click `Replace All`.
+
+Save your file as **plain text** called "trilobites.txt" in the r directory on the computer you are working on.
+
 ## Part 3: Utilizing the TriloMorph Dataset
 To begin, let's install and load the necessary packages and scripts we will use to conduct our analysis. The research group at TriloMorph has developed the following set of scripts that automatically loads the required packages and functions neccesary. Copy, paste, and run this line in your R console:
 
