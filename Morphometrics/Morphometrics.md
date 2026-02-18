@@ -102,7 +102,9 @@ triloGPA <- gpagen(trilobites)
 # view the GPA results
 triloGPA
 ````
+
 **Questions**
+
  1. Copy and paste the GPA results into your lab report.
  2. What do you think the X-Y coordinates refer to?
 
@@ -112,6 +114,7 @@ Let's plot the GPA to see what our aligned data looks like
 plot(triloGPA)
 ````
 **Questions**
+
  3. Add this plot to your lab report.
  4. Examine the plot. What does this information visualize? What do you think the large black points represent? What about the smaller gray points?
 
@@ -132,6 +135,7 @@ triloPCA
 ````
 
 **Questions**
+
 5. Copy and paste the results of your PCA into your lab report.
 6. Examine the PCA results. What is the proportion of variance for principal component 1 (PC1)?
 7. What is the proportion of variance for PC2?
@@ -146,6 +150,7 @@ barplot(triloPCA$sdev^2/sum(triloPCA$sdev^2))
 ````
 
 **Questions**
+
 10. Add the barplot to your lab report.
 11. Is there a single dominant PC axis (one PC axis that accounts for much more variation than any other)? Or are there two or three PC axes that are similar and account for most of the variation?
 
@@ -174,6 +179,7 @@ ggplot(triloTIB, aes(Comp1, Comp2, label = ID)) +
 ````
 
 **Questions**
+
 12. Add the PCA plot to your lab report.
 13. Is there any obvious grouping in the data? In other words, do specimens of the same family plot close to each other?
 14. Which two individual specimens vary the most along the PC1 axis? To figure this out, you should identify the two most distant specimens along the x-axis, regardless of where they plot on the y-axis.
@@ -202,6 +208,7 @@ plotRefToTarge(ref, triloPCA$shapes$shapes.comp2$max, method = "points")
 ````
 
 **Questions**
+
 18. Add the three-panel plot for the PC1 comparison to your lab report.
 19. Which landmarks are changing the most across PC1?
 20. Add the three-panel plot for the PC2 comparison to your lab report.
