@@ -70,7 +70,109 @@ To collect your landmark data, open the first image in your images folder in FIJ
 
 To save this as a `.tps` file, highlight the two columns your coordinate data (columns F & G in the example picture) and copy. In Word, use `Paste Special` to paste the data as **unformatted text**. Some programs don't like tab characters, which are inserted by default when you paste from Excel. Remove them with `Edit > Find > Advanced Replace` and `Replace`. To do this, click the arrow in the lower left to show options. Click the "replace" tab at the top to open both Find and Replace input bars. Enter `^t` in the "Find What" bar and enter a single space in the "Replace With" bar. Click `Replace All`.
 
-Save your file as **plain text** called "trilobites.txt" in the r directory on the computer you are working on.
+Save your file as **plain text** called `trilobites.txt` in the r directory on the computer you are working on.
+
+**STEP 4:** Analyze the data in R using the `geomorph` package
+
+Open R Studio and run the following script:
+
+````r
+# install necessary packages
+install.packages("geomorph")
+install.packages("tidyverse")
+
+# load packages
+library(geomorph)
+librayr(tidyverse)
+
+# load in your data
+trilobites <- readland.tps("trilobites.txt", specID = "ID")
+````
+
+Great, now your data is loaded and ready to be analyzed! The first analysis we want to conduct is a **Generalized Procrustes Analysis** or GPA. Here is an GPA explainer from Sherratt (2014):
+
+>Generalized Procrustes Analysis (GPA: Gower 1975; Rohlf and Slice 1990) is the primary means by which shape variables are obtained from landmark data. GPA translates all specimens to the origin, scales them to unit-centroid size, and optimally rotates them (using a least-squares criterion) until the coordinates of corresponding points align as closely as possible. The resulting aligned Procrustes coordinates represent the shape of each specimen, and are found in a curved space related to Kendall's shape space (Kendall 1984). Typically, these are projected into a linear tangent space yielding Kendall's tangent space coordinates (Dyrden and Mardia 1993; Rohlf 1999), which are used for subsequent multivariate analyses.
+
+To conduct a GPA on your data, complete the following:
+
+````r
+# run the generalized procrustes analysis to align your specimens
+triloGPA <- gpagen(trilobites)
+
+# view the GPA results
+triloGPA
+````
+**Questions**
+1. Copy and paste the GPA results into your lab report.
+2. What do you think the X-Y coordinates refer to?
+
+Let's plot the GPA to see what our aligned data looks like
+
+````r
+plot(triloGPA)
+````
+**Questions**
+3. Add this plot to your lab report.
+4. Examine the plot. What does this information visualize? What do you think the large black points represent? What about the smaller gray points?
+
+**STEP 5: Now we will use `geomorph` to conduct a **Principal Components Analysis** or PCA. For a quick explanation of PCA, we can turn to Foote & Miller:
+
+>**Ordination of Specimens:** One of the main uses of multivariate analysis is the facilitate visual inspection of data. In a bivariate plot, it is easy to see which specimens are most similar, how specimens differ, how the data trend, and so on. To do the same with multivariate data requires an **ordination** -- a representation of the position of the specimens relative to on another. One of the most widely employed methods to achieve this goal is PCA. In the figure above, Figure 3.12c shows the same hypothetical data as figure 3.12a. The points have simply been rotated so that the major and minor axes running through the data in Figure 3.12a are now in the same direction as the new x and y axes of Figure 3.12c. The direction of the major axis is the direction of maximal dispersion in the data and defines the first principal component. There is still residual variation around the axis, indicated by the minor axis that is perpendicular to the first axis. The minor axis defines the second principal component.
+>
+>The method of principal components extends to any number of dimensions. Each successive axis is always perpendicular to all the previous ones, and it runs in the direction of maximal remaining dispersion around the previous axes. The position of each specimen along a particular principal-component axis is referred to as its score on that axis. The length of each axis tells how much variance in the data is acounted for by the corresponding principal component; it is expressed by a number called the eigenvalue.
+
+To conduct and plot PCA in R:
+
+````r
+# run PCA on the GPA data
+triloPCA <- gm.prcomp(triloGPA$coords)
+
+# view the results
+triloPCA
+````
+
+**Questions**
+5. Copy and paste the results of your PCA into your lab report.
+6. Examine the PCA results. What is the proportion of variance for principal component 1 (PC1)?
+7. What is the proportion of variance for PC2?
+8. Think about the information that is being given for each principle component. What is the cumulative proportion of variance accounted for by PC1 and PC2?
+9. Usually most of the variance in an analysis like this accounted for by the first 4 or 5 PCs. What is the cumulative proportion of variance accounted for by PC5?
+
+You can also view the information above as a histogram. This type of plot is called a Scree plot and is very useful for understanding the distribution of the shape variance in the different PCs. To create this plot, run the following:
+
+````r
+# create barplot of proportion of variance
+barplot(triloPCA$sdev^2/sum(triloPCA$sdev^2))
+````
+
+**Questions**
+10. Add the barplot to your lab report.
+11. Is there a single dominant PC axis (one PC axis that accounts for much more variation than any other)? Or are there two or three PC axes that are similar and account for most of the variation?
+
+Now let's plot the PCA. You can view a very basic PCA plot using `plot(triloPCA` but you will have a tough time analyzing it unless you add some additional information. Let's load in the specimen information and use that to make the PCA plot more informative:
+
+````r
+# load specimen info
+trilo.info <- read.csv("lab_specimens.csv", header = T)
+
+# create a new data file (tibble) that is easier to plot
+triloTIB <- as_tibble(triloPCA$x)
+
+triloTIB <- mutate(triloTIB,
+                   ID = trilo.info$Specimen,
+                   Family = trilo.info$Family,
+                   Genus = trilo.info$Genus,
+                   Age = trilo.info$Age)
+
+# plot the PCA with ID labels and taxonomy
+ggplot(triloTIB, aes(Comp1, Comp2, label = ID)) +
+  geom_point(aes(color = Family), size = 3) +
+  geom_text(hjust=-0.75, vjust=0.5) +
+  xlab("Principal Component 1") +
+  ylab("Principal Component 2") +
+  theme_bw()
+````
+
 
 ## Part 3: Utilizing the TriloMorph Dataset
 To begin, let's install and load the necessary packages and scripts we will use to conduct our analysis. The research group at TriloMorph has developed the following set of scripts that automatically loads the required packages and functions neccesary. Copy, paste, and run this line in your R console:
