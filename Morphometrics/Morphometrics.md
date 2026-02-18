@@ -103,8 +103,8 @@ triloGPA <- gpagen(trilobites)
 triloGPA
 ````
 **Questions**
-1. Copy and paste the GPA results into your lab report.
-2. What do you think the X-Y coordinates refer to?
+ 1. Copy and paste the GPA results into your lab report.
+ 2. What do you think the X-Y coordinates refer to?
 
 Let's plot the GPA to see what our aligned data looks like
 
@@ -112,8 +112,8 @@ Let's plot the GPA to see what our aligned data looks like
 plot(triloGPA)
 ````
 **Questions**
-3. Add this plot to your lab report.
-4. Examine the plot. What does this information visualize? What do you think the large black points represent? What about the smaller gray points?
+ 3. Add this plot to your lab report.
+ 4. Examine the plot. What does this information visualize? What do you think the large black points represent? What about the smaller gray points?
 
 **STEP 5: Now we will use `geomorph` to conduct a **Principal Components Analysis** or PCA. For a quick explanation of PCA, we can turn to Foote & Miller:
 
