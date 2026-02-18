@@ -34,6 +34,7 @@ The first step in morphometrics analysis is to collect landmark data from your s
 + The landmarks on each image must be collected in the same order
 + Landmarks are ordinarly placed on homologous points, or points that can be replicated from object to object based on common morphology, common fuction, or common geometry. Luckily for you, I have already determined where the landmarks will be placed, so your main task is learning to identify those places on each of the specimens. The landmark scheme is illustrated and described below.
 
+**Description of Landmarks**
 | Landmark | Description                                                      |
 |----------| -----------------------------------------------------------------|
 | LM1      | Anteriormost point of the saggital cephalic length without spine |
@@ -44,10 +45,24 @@ The first step in morphometrics analysis is to collect landmark data from your s
 | LM6      | Intersection between the occipital and axial furrows |
 | LM7      | Intersection between the posterior margin and the axial furrow |
 | LM8      | Anteriormost end of the eye |
+| LM9      | Poseriormost end of the eye |
+| LM10     | Anterior facial sutuer at the saggital line |
+| LM11     | Intersection between the posterior branch of facial suture and the posterior or lateral border furrow |
+| LM12     | Intersection between the posterior branch of facial suture and the posterior or lateral margin |
+| LM13     | Anteriormost point of the saggital (or ex-saggital) cephalic length (if spiny, LM13 is at the tip of the spine) |
+| LM14     | Lateralmost external point of the eye |
+| LM15     | Cephalic width at the level of the posterior margin of the occipital ring (LM4). If that point cannot be located, it is defined as the extreme of the genal angel. |
+| LM16     | Tip of the genal angle or spine |
 
+Use the landmark descriptions in the table above along with the diagrams below to place your landmarks. This will likely take some time and will require you to become intimately familiar with the morphology of trilobite cephala (heads). You can also use the morphology diagrams of the [whole body](https://www.trilobites.info/trilomorph.htm) and the [cephalon](https://www.trilobites.info/cephalon.htm) on [this trilobite website](https://www.trilobites.info/) to help determine where to place your landmarks.
 
+**Figure 1:** Diagram of landmark scheme illustrated on three different trilobites
+![Figure1](/Morphometrics/Serra_et_al_Fig2.png)
 
+**Figure 2:** Another diagram of landmark scheme
+![Figure2](/Morphometrics/Serra_et_al_Fig3.png)
 
+To collect your landmark data, open the first image in your images folder in FIJI. Use the multipoint collector tool to place the landmarks on the image. Remember, you *must* place them in numerical order (1-16). If you need to move a landmark after you place it, you can just click and drag the point. Once you have placed all 16 landmarks, use **CTRL-M** to record them in the measurement window (a spreadsheet that will populate with all of your data as you collect from each image). FIJI will collected more information than we are interested in, and you don't need to pay any attention to the first four columns on the sheet (Area, Mean, Min, Max). We are only interested in the cartesian coordinates of our landmarks (X, Y). When you are done with your first image, use CTRL-SHIFT-O to open the next image. Repeat until you have collected landmark data from all 30 images.
 
 ## Part 3: Utilizing the TriloMorph Dataset
 To begin, let's install and load the necessary packages and scripts we will use to conduct our analysis. The research group at TriloMorph has developed the following set of scripts that automatically loads the required packages and functions neccesary. Copy, paste, and run this line in your R console:
