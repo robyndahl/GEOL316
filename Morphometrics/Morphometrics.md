@@ -77,9 +77,11 @@ Save your file as **plain text** called `trilobites.txt` in the r directory on t
 Open R Studio and run the following script:
 
 ````r
-# install necessary packages
-install.packages("geomorph")
-install.packages("tidyverse")
+# check if you need to install necessary packages
+if (!any(installed.packages()[, 1] == "geomorph")) {
+  install.packages("geomorph") }
+if (!any(installed.packages()[, 1] == "tidyverse")) {
+  install.packages("tidyverse") }
 
 # load packages
 library(geomorph)
