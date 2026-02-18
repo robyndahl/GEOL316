@@ -19,7 +19,7 @@ In this lab, you will learn how to collect 2D landmark data from photographs, ho
 To complete this lab, you will need the following software:
 
 + R Studio: available on all campus computers, free to download at: [https://posit.co/downloads/](https://posit.co/downloads/)
-+ FIJI: also known as ImageJ, free to download at: [https://fiji.sc/](https://fiji.sc/)
++ FIJI: also known as ImageJ, available on all campus computers, free to download at: [https://fiji.sc/](https://fiji.sc/)
 + Datasets: all necessary datasets, include images for analysis, are available on Canvas.
 
 ## Part 2: Collecting 2D Landmark Data from Trilobite Specimens
