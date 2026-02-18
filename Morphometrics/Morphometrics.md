@@ -120,7 +120,7 @@ plot(triloGPA)
  3. Add this plot to your lab report.
  4. Examine the plot. What does this information visualize? What do you think the large black points represent? What about the smaller gray points?
 
-**STEP 5: Now we will use `geomorph` to conduct a **Principal Components Analysis** or PCA. For a quick explanation of PCA, we can turn to Foote & Miller:
+**STEP 5:** Now we will use `geomorph` to conduct a **Principal Components Analysis** or PCA. For a quick explanation of PCA, we can turn to Foote & Miller:
 
 >**Ordination of Specimens:** One of the main uses of multivariate analysis is the facilitate visual inspection of data. In a bivariate plot, it is easy to see which specimens are most similar, how specimens differ, how the data trend, and so on. To do the same with multivariate data requires an **ordination** -- a representation of the position of the specimens relative to on another. One of the most widely employed methods to achieve this goal is PCA. In the figure above, Figure 3.12c shows the same hypothetical data as figure 3.12a. The points have simply been rotated so that the major and minor axes running through the data in Figure 3.12a are now in the same direction as the new x and y axes of Figure 3.12c. The direction of the major axis is the direction of maximal dispersion in the data and defines the first principal component. There is still residual variation around the axis, indicated by the minor axis that is perpendicular to the first axis. The minor axis defines the second principal component.
 >
