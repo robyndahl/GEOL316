@@ -173,6 +173,39 @@ ggplot(triloTIB, aes(Comp1, Comp2, label = ID)) +
   theme_bw()
 ````
 
+**Questions**
+12. Add the PCA plot to your lab report.
+13. Is there any obvious grouping in the data? In other words, do specimens of the same family plot close to each other?
+14. Which two individual specimens vary the most along the PC1 axis? To figure this out, you should identify the two most distant specimens along the x-axis, regardless of where they plot on the y-axis.
+15. View `triloTIB` to see more information about the two specimens you chose for Question 14. List their family, genus, and age.
+16. Which two individual specimens vary the most along the PC2 axis?
+17. List the family, genus, and age for the two specimens you selected for Question 16.
+
+Now let’s examine how shape actually varies along these two axes. To do this, you will generate two plots that illustrate how landmarks vary between the two endmembers of a given principal component. Use the following script to do this.
+
+````r
+# first, generate a plot for the reference specimen
+# this plot is built from the centroid points for each landmark
+ref <- mshape(triloGPA$coords)
+
+# next, compare the two most different specimens along PC1 to the reference specimen
+par(mfrow = c(1,3))
+plotRefToTarge(ref, triloPCA$shapes$shapes.comp1$min, method = "points")
+plotRefToTarge(ref, ref, method = "points")
+plotRefToTarge(ref, triloPCA$shapes$shapes.comp1$max, method = "points")
+
+# finally, compare the two most different specimens along PC2
+par(mfrow = c(1,3))
+plotRefToTarge(ref, triloPCA$shapes$shapes.comp2$min, method = "points")
+plotRefToTarge(ref, ref, method = "points")
+plotRefToTarge(ref, triloPCA$shapes$shapes.comp2$max, method = "points")
+````
+
+**Questions**
+18. Add the three-panel plot for the PC1 comparison to your lab report.
+19. Which landmarks are changing the most across PC1?
+20. Add the three-panel plot for the PC2 comparison to your lab report.
+21. Which landmarks are changing the most across PC2?
 
 ## Part 3: Utilizing the TriloMorph Dataset
 To begin, let's install and load the necessary packages and scripts we will use to conduct our analysis. The research group at TriloMorph has developed the following set of scripts that automatically loads the required packages and functions neccesary. Copy, paste, and run this line in your R console:
