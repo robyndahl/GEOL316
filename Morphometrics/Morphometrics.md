@@ -202,15 +202,15 @@ ref <- mshape(triloGPA$coords)
 
 # next, compare the two most different specimens along PC1 to the reference specimen
 par(mfrow = c(1,3))
-plotRefToTarge(ref, triloPCA$shapes$shapes.comp1$min, method = "points")
-plotRefToTarge(ref, ref, method = "points")
-plotRefToTarge(ref, triloPCA$shapes$shapes.comp1$max, method = "points")
+plotRefToTarget(ref, triloPCA$shapes$shapes.comp1$min, method = "vector")
+plotRefToTarget(ref, ref, method = "points")
+plotRefToTarget(ref, triloPCA$shapes$shapes.comp1$max, method = "vector")
 
 # finally, compare the two most different specimens along PC2
 par(mfrow = c(1,3))
-plotRefToTarge(ref, triloPCA$shapes$shapes.comp2$min, method = "points")
-plotRefToTarge(ref, ref, method = "points")
-plotRefToTarge(ref, triloPCA$shapes$shapes.comp2$max, method = "points")
+plotRefToTarget(ref, triloPCA$shapes$shapes.comp2$min, method = "vector")
+plotRefToTarget(ref, ref, method = "points")
+plotRefToTarget(ref, triloPCA$shapes$shapes.comp2$max, method = "vector")
 ````
 
 **Questions**
