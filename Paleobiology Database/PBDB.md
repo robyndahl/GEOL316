@@ -30,7 +30,7 @@ Great! Now we are ready to download some data.
 
 #### Step 2
 
-We are going to download a very large dataset of bivalve occurrences throughout the entire Phanerozoic. Because this is such a large dataset, we're going to download it in chunks and then combine the chunks together into a single data set.
+We are going to download a very large dataset of bivalve occurrences throughout the entire Phanerozoic. Because this is such a large dataset, we're going to download it in chunks and then combine the chunks together into a single data set. NOTE! Each of these might take a few minutes to actually download them. Download each dataset one at a time.
 
 ````R
 # download occurrences, split by era because dataset is so large
